@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TotalPrint — Litere Luminoase LED pentru Evenimente | Cluj-Napoca</title>
+  <meta name="description" content="Închiriază litere luminoase LED gigante pentru nunți, petreceri corporate, botezuri și evenimente speciale în Cluj-Napoca și toată Transilvania.">
+  <meta property="og:title" content="TotalPrint — Litere Luminoase LED">
+  <meta property="og:description" content="Litere luminoase LED gigante pentru evenimente unice. Transport, instalare și ridicare incluse.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --gold: #D4A853;
+      --gold-light: #E8C97A;
+      --gold-dark: #B8902E;
+      --bg-dark: #0A0A0A;
+      --bg-card: #111111;
+      --bg-card-hover: #1A1A1A;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0A0A0;
+      --text-muted: #666666;
+      --border: rgba(212, 168, 83, 0.15);
+      --border-hover: rgba(212, 168, 83, 0.4);
+      --glow: rgba(212, 168, 83, 0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ═══ TYPOGRAPHY ═══ */
+    .font-display { font-family: 'Playfair Display', serif; }
+    .text-gold { color: var(--gold); }
+    .text-gold-light { color: var(--gold-light); }
+
+    /* ═══ NAVIGATION ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    nav.scrolled { background: rgba(10, 10, 10, 0.95); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: #fff; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.3s; letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold) !important; color: #000 !important;
+      padding: 0.6rem 1.5rem; border-radius: 100px;
+      font-weight: 700 !important; font-size: 0.8rem !important;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.3s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: scale(1.05); }
+
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 5px 0; transition: all 0.3s; }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 1.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(212, 168, 83, 0.06) 0%, transparent 70%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--glow);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary); max-width: 600px;
+      margin: 0 auto 2.5rem; line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #000; padding: 1rem 2.5rem; border-radius: 100px;
+      font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.3s; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 168, 83, 0.4); }
+    .btn-secondary {
+      background: transparent; color: var(--gold);
+      padding: 1rem 2.5rem; border-radius: 100px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--border); transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); background: var(--glow); }
+
+    /* ═══ SECTIONS ═══ */
+    section { padding: 6rem 1.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--text-secondary);
+      max-width: 600px; margin-bottom: 3rem; line-height: 1.8;
+    }
+
+    /* ═══ SERVICES CARDS ═══ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .service-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 1rem;
+      background: var(--glow); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .service-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+    .service-price {
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .service-price .from { font-size: 0.8rem; color: var(--text-muted); }
+    .service-price .price { font-size: 1.5rem; font-weight: 800; color: var(--gold); }
+    .service-price .unit { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ═══ PORTFOLIO GALLERY ═══ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      border-radius: 1rem; aspect-ratio: 4/3;
+      background: var(--bg-card); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.4s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      border-color: var(--border-hover);
+      box-shadow: 0 10px 30px rgba(212, 168, 83, 0.15);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8));
+      display: flex; align-items: flex-end; padding: 1.25rem;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span { font-size: 0.9rem; font-weight: 600; }
+
+    /* ═══ STATS ═══ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; text-align: center; padding: 4rem 0;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900; color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+    /* ═══ TESTIMONIALS ═══ */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 1.25rem; padding: 2rem;
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    .testimonial-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+    .testimonial-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; font-style: italic; }
+    .testimonial-author { font-weight: 600; font-size: 0.9rem; }
+    .testimonial-event { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* ═══ HOW IT WORKS ═══ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem; counter-reset: step;
+    }
+    .step-card { text-align: center; padding: 1.5rem; counter-increment: step; }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--gold); opacity: 0.3; line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .step-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .step-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+
+    /* ═══ CTA SECTION ═══ */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(212, 168, 83, 0.02));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    /* ═══ CONTACT ═══ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%; padding: 1rem 1.25rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 0.75rem; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.3s; outline: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      border-color: var(--gold);
+    }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
+    .contact-form .form-group { margin-bottom: 1rem; }
+    .contact-form label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-secondary); }
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info-icon {
+      width: 48px; height: 48px; border-radius: 0.75rem;
+      background: var(--glow); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; flex-shrink: 0;
+    }
+    .contact-info-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .contact-info-item p { font-size: 0.9rem; color: var(--text-secondary); }
+    .contact-info-item a { color: var(--gold); text-decoration: none; }
+    .contact-info-item a:hover { text-decoration: underline; }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      padding: 3rem 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer p { color: var(--text-muted); font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1.5rem; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ═══ ANIMATIONS ═══ */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        padding: 1.5rem; gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .hamburger { display: block; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .stat-number { font-size: 2.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Total<span>Print</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicii">Servicii</a>
+      <a href="#portofoliu">Portofoliu</a>
+      <a href="#cum-functioneaza">Cum Funcționează</a>
+      <a href="#testimoniale">Recenzii</a>
+      <a href="#contact" class="nav-cta">Solicită Ofertă</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="acasa">
+  <div class="hero-content">
+    <div class="hero-badge">✨ Nr. 1 în Transilvania</div>
+    <h1>
+      Litere Luminoase<br>
+      <span class="highlight">pentru Evenimente Unice</span>
+    </h1>
+    <p>
+      Transformă evenimentul tău într-o experiență de neuitat cu literele noastre LED gigante de 1.2m. 
+      Nunți, petreceri corporate, botezuri — noi aducem strălucirea.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Solicită Ofertă Gratuită</a>
+      <a href="#portofoliu" class="btn-secondary">Vezi Portofoliul</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section style="padding: 2rem 1.5rem 4rem;">
+  <div class="section-inner">
+    <div class="stats-grid fade-in">
+      <div>
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Evenimente Realizate</div>
+      </div>
+      <div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Clienți Mulțumiți</div>
+      </div>
+      <div>
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Litere & Numere</div>
+      </div>
+      <div>
+        <div class="stat-number">1.2m</div>
+        <div class="stat-label">Înălțime Litere</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICII ═══ -->
+<section id="servicii">
+  <div class="section-inner">
+    <div class="section-label">Serviciile Noastre</div>
+    <h2 class="section-title">Ce Oferim</h2>
+    <p class="section-subtitle">
+      De la litere luminoase clasice până la cifre și simboluri speciale — avem tot ce ai nevoie pentru un eveniment de vis.
+    </p>
+
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">💒</div>
+        <h3>Nunți & Logodne</h3>
+        <p>Literele LOVE, MR & MRS, inițialele mirilor sau data nunții — creează fundalul perfect pentru fotografii de neuitat.</p>
+        <div class="service-price">
+          <span class="from">de la</span>
+          <span class="price">800 lei</span>
+          <span class="unit">/ eveniment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">🎉</div>
+        <h3>Petreceri & Aniversări</h3>
+        <p>Cifre luminoase pentru aniversări, mesaje personalizate pentru petreceri tematice, botezuri și zile de naștere speciale.</p>
+        <div class="service-price">
+          <span class="from">de la</span>
+          <span class="price">500 lei</span>
+          <span class="unit">/ eveniment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">🏢</div>
+        <h3>Evenimente Corporate</h3>
+        <p>Logo-uri luminoase, hashtag-uri pentru social media, litere pentru lansări de produse, conferințe și gale de premiere.</p>
+        <div class="service-price">
+          <span class="from">de la</span>
+          <span class="price">1200 lei</span>
+          <span class="unit">/ eveniment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">📸</div>
+        <h3>Photo Booth LED</h3>
+        <p>Cadrul perfect pentru selfie-uri și fotografii de grup. Combinăm literele luminoase cu fundaluri elegante pentru experiențe memorabile.</p>
+        <div class="service-price">
+          <span class="from">de la</span>
+          <span class="price">600 lei</span>
+          <span class="unit">/ eveniment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">🎄</div>
+        <h3>Decorațiuni Sezoniere</h3>
+        <p>Crăciun, Revelion, Valentine's Day — decorează spațiul comercial sau evenimentul cu litere tematice strălucitoare.</p>
+        <div class="service-price">
+          <span class="from">de la</span>
+          <span class="price">700 lei</span>
+          <span class="unit">/ eveniment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-in">
+        <div class="service-icon">🎨</div>
+        <h3>Custom & Personalizat</h3>
+        <p>Ai o idee specială? Realizăm litere, cifre și simboluri personalizate la comandă. Spune-ne viziunea ta și noi o facem realitate.</p>
+        <div class="service-price">
+          <span class="from">preț</span>
+          <span class="price">la cerere</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PORTOFOLIU ═══ -->
+<section id="portofoliu" style="background: rgba(255,255,255,0.01);">
+  <div class="section-inner">
+    <div class="section-label">Portofoliu</div>
+    <h2 class="section-title">Evenimentele Noastre</h2>
+    <p class="section-subtitle">
+      Fiecare eveniment este unic. Iată câteva din momentele magice pe care le-am creat pentru clienții noștri.
+    </p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">💒</div>
+        <div class="gallery-overlay"><span>Nuntă — LOVE Letters</span></div>
+      </div>
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #2d1b3d, #1a1a2e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🎂</div>
+        <div class="gallery-overlay"><span>Aniversare 30 — Cifre Luminoase</span></div>
+      </div>
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a1a2e, #0d1b2a);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🏢</div>
+        <div class="gallery-overlay"><span>Eveniment Corporate — Hashtag LED</span></div>
+      </div>
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1b2a1a, #1a1a2e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">👶</div>
+        <div class="gallery-overlay"><span>Botez — Numele Bebelușului</span></div>
+      </div>
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #2a1b1b, #1a1a2e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">💕</div>
+        <div class="gallery-overlay"><span>Logodnă — MR & MRS</span></div>
+      </div>
+      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a2a1b, #1a1a2e);">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🎄</div>
+        <div class="gallery-overlay"><span>Crăciun — Decorațiuni Sezoniere</span></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+        📷 Vezi mai multe pe Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CUM FUNCȚIONEAZĂ ═══ -->
+<section id="cum-functioneaza">
+  <div class="section-inner">
+    <div class="section-label">Cum Funcționează</div>
+    <h2 class="section-title">Simplu ca 1-2-3-4</h2>
+    <p class="section-subtitle">
+      Ne ocupăm de tot — tu te bucuri de eveniment.
+    </p>
+
+    <div class="steps-grid">
+      <div class="step-card fade-in">
+        <div class="step-number">01</div>
+        <h3>Alege Literele</h3>
+        <p>Spune-ne ce mesaj vrei, data și locația evenimentului. Te ajutăm să alegi combinația perfectă.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">02</div>
+        <h3>Primești Oferta</h3>
+        <p>Îți trimitem oferta personalizată în maxim 2 ore. Fără costuri ascunse — prețul include totul.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">03</div>
+        <h3>Livrăm & Instalăm</h3>
+        <p>Echipa noastră aduce literele, le instalează profesional și se asigură că totul arată perfect.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">04</div>
+        <h3>Ridicăm După</h3>
+        <p>La finalul evenimentului, venim și ridicăm totul. Zero stress pentru tine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="section-inner" style="text-align: center;">
+    <h2 class="section-title">Pregătit să Strălucești?</h2>
+    <p class="section-subtitle" style="margin: 1rem auto 2.5rem;">
+      Literele noastre luminoase transformă orice spațiu într-o scenă de film. 
+      Contactează-ne astăzi și primește o ofertă gratuită în maxim 2 ore.
+    </p>
+    <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1.25rem 3rem;">
+      Solicită Ofertă Gratuită →
+    </a>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALE ═══ -->
+<section id="testimoniale">
+  <div class="section-inner">
+    <div class="section-label">Recenzii</div>
+    <h2 class="section-title">Ce Spun Clienții Noștri</h2>
+    <p class="section-subtitle">
+      Fiecare eveniment lasă o amintire. Iată ce spun clienții noștri despre experiența cu TotalPrint.
+    </p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Literele LOVE au fost punctul central al nunții noastre! Toți invitații au făcut poze lângă ele. Echipa a fost super profesionistă, au instalat totul rapid și discret."</p>
+        <div class="testimonial-author">Andreea & Mihai</div>
+        <div class="testimonial-event">Nuntă — Cluj-Napoca, 2025</div>
+      </div>
+
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Am folosit serviciile TotalPrint pentru lansarea noului nostru produs. Hashtag-ul luminoas a fost viral pe Instagram! ROI-ul investiției a fost incredibil."</p>
+        <div class="testimonial-author">Maria Popescu</div>
+        <div class="testimonial-event">Eveniment Corporate — Cluj Business Park</div>
+      </div>
+
+      <div class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Cifrele luminoase pentru aniversarea de 40 de ani a tatei au fost spectaculoase! Calitate excepțională și prețuri corecte. Recomand cu toată încrederea!"</p>
+        <div class="testimonial-author">Alexandru D.</div>
+        <div class="testimonial-event">Aniversare — Turda, 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Hai Să Vorbim</h2>
+    <p class="section-subtitle">
+      Completează formularul sau contactează-ne direct. Răspundem în maxim 2 ore.
+    </p>
+
+    <div class="contact-grid">
+      <form class="contact-form fade-in" onsubmit="event.preventDefault(); alert('Mulțumim! Te vom contacta în curând. 🌟'); this.reset();">
+        <div class="form-group">
+          <label>Numele Tău</label>
+          <input type="text" placeholder="ex: Maria Ionescu" required>
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" placeholder="ex: 0740 123 456" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="ex: maria@email.com">
+        </div>
+        <div class="form-group">
+          <label>Tip Eveniment</label>
+          <select required>
+            <option value="">Selectează...</option>
+            <option>Nuntă</option>
+            <option>Botez</option>
+            <option>Aniversare</option>
+            <option>Eveniment Corporate</option>
+            <option>Petrecere</option>
+            <option>Altele</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Data Evenimentului</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Ce Litere / Mesaj Dorești?</label>
+          <textarea rows="3" placeholder="ex: LOVE, MR & MRS, cifre aniversare, hashtag..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">
+          Trimite Cererea →
+        </button>
+      </form>
+
+      <div class="fade-in">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <h4>Locație</h4>
+            <p>Cluj-Napoca, România<br>Livrăm în toată Transilvania</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📱</div>
+          <div>
+            <h4>Telefon / WhatsApp</h4>
+            <p><a href="tel:+40740000000">+40 740 000 000</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:contact@totalprint.ro">contact@totalprint.ro</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📷</div>
+          <div>
+            <h4>Instagram</h4>
+            <p><a href="https://www.instagram.com/total.events.cluj" target="_blank">@total.events.cluj</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">⏰</div>
+          <div>
+            <h4>Program</h4>
+            <p>Luni — Vineri: 09:00 – 20:00<br>Sâmbătă — Duminică: La cerere</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-links">
+      <a href="#acasa">Acasă</a>
+      <a href="#servicii">Servicii</a>
+      <a href="#portofoliu">Portofoliu</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank">Instagram</a>
+    </div>
+    <p style="margin-bottom: 0.5rem;">
+      <a href="#" class="nav-logo" style="font-size: 1.25rem; text-decoration: none;">Total<span style="color: #fff;">Print</span></a>
+    </p>
+    <p>© 2026 TotalPrint. Toate drepturile rezervate. Cluj-Napoca, România.</p>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('navLinks').classList.remove('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
