@@ -3,764 +3,1043 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TotalPrint — Litere Luminoase LED pentru Evenimente | Cluj-Napoca</title>
-  <meta name="description" content="Închiriază litere luminoase LED gigante pentru nunți, petreceri corporate, botezuri și evenimente speciale în Cluj-Napoca și toată Transilvania.">
-  <meta property="og:title" content="TotalPrint — Litere Luminoase LED">
-  <meta property="og:description" content="Litere luminoase LED gigante pentru evenimente unice. Transport, instalare și ridicare incluse.">
+  <title>TotalPrint — Închiriere Litere Luminoase LED | Cluj-Napoca</title>
+  <meta name="description" content="Închiriere litere luminoase LED gigante pentru nunți, botezuri, aniversări, petreceri și evenimente corporate. Cluj-Napoca și toată Transilvania. Livrare, montaj și ridicare incluse.">
+  <meta name="keywords" content="litere luminoase, LED letters, închiriere litere, nunți Cluj, evenimente Cluj, litere gigante, marquee letters, total events cluj">
+  <meta property="og:title" content="TotalPrint — Litere Luminoase LED pentru Evenimente">
+  <meta property="og:description" content="Transformă evenimentul tău cu litere luminoase LED gigante. Nunți, botezuri, aniversări. Cluj-Napoca & Transilvania.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    
     :root {
-      --gold: #D4A853;
-      --gold-light: #E8C97A;
-      --gold-dark: #B8902E;
-      --bg-dark: #0A0A0A;
-      --bg-card: #111111;
-      --bg-card-hover: #1A1A1A;
-      --text-primary: #FFFFFF;
-      --text-secondary: #A0A0A0;
-      --text-muted: #666666;
-      --border: rgba(212, 168, 83, 0.15);
-      --border-hover: rgba(212, 168, 83, 0.4);
-      --glow: rgba(212, 168, 83, 0.08);
+      --gold: #D4A853; --gold-light: #E8C97A; --gold-dark: #B8902E;
+      --warm: #F5E6D0; --cream: #FFF8F0;
+      --bg: #080808; --bg-card: #0F0F0F; --bg-elevated: #161616;
+      --text: #FFFFFF; --text-dim: #999; --text-muted: #555;
+      --border: rgba(212,168,83,0.12); --border-hover: rgba(212,168,83,0.35);
+      --glow: rgba(212,168,83,0.06); --glow-strong: rgba(212,168,83,0.15);
     }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .serif { font-family: 'Playfair Display', serif; }
+    .script { font-family: 'Dancing Script', cursive; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
 
-    html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ═══ TYPOGRAPHY ═══ */
-    .font-display { font-family: 'Playfair Display', serif; }
+    /* ═══ UTILITY ═══ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
     .text-gold { color: var(--gold); }
-    .text-gold-light { color: var(--gold-light); }
+    .text-center { text-align: center; }
+    .grid { display: grid; gap: 1.5rem; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .flex { display: flex; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .gap-1 { gap: 0.5rem; } .gap-2 { gap: 1rem; } .gap-3 { gap: 1.5rem; } .gap-4 { gap: 2rem; }
+
+    /* ═══ BUTTONS ═══ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 1rem 2.5rem; border-radius: 100px; font-weight: 700;
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1); border: none; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #000; box-shadow: 0 4px 25px rgba(212,168,83,0.35);
+    }
+    .btn-gold:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 12px 40px rgba(212,168,83,0.45); }
+    .btn-gold:active { transform: translateY(0) scale(0.98); }
+    .btn-outline {
+      background: transparent; color: var(--gold);
+      border: 1.5px solid var(--border-hover);
+    }
+    .btn-outline:hover { background: var(--glow); border-color: var(--gold); transform: translateY(-2px); }
+    .btn-whatsapp {
+      background: #25D366; color: #fff;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { background: #20BD5A; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
+    .btn-lg { padding: 1.25rem 3rem; font-size: 0.95rem; }
+    .btn-sm { padding: 0.7rem 1.5rem; font-size: 0.75rem; }
 
     /* ═══ NAVIGATION ═══ */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1rem 0; transition: all 0.4s;
     }
-    nav.scrolled { background: rgba(10, 10, 10, 0.95); }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      padding: 1rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+    nav.scrolled {
+      background: rgba(8,8,8,0.92); backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border); padding: 0.6rem 0;
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 900;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
-    .nav-logo span { color: #fff; }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500;
-      transition: color 0.3s; letter-spacing: 0.02em;
-    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; }
+    .nav-logo em { color: var(--gold); font-style: normal; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-dim); transition: color 0.3s; }
     .nav-links a:hover { color: var(--gold); }
     .nav-cta {
-      background: var(--gold) !important; color: #000 !important;
-      padding: 0.6rem 1.5rem; border-radius: 100px;
-      font-weight: 700 !important; font-size: 0.8rem !important;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      transition: all 0.3s !important;
+      background: var(--gold); color: #000; padding: 0.6rem 1.5rem;
+      border-radius: 100px; font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s;
     }
-    .nav-cta:hover { background: var(--gold-light) !important; transform: scale(1.05); }
-
-    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 5px 0; transition: all 0.3s; }
+    .nav-cta:hover { background: var(--gold-light); transform: scale(1.05); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; flex-direction: column; gap: 5px; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--gold); transition: all 0.3s; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translateY(7px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translateY(-7px); }
 
     /* ═══ HERO ═══ */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 8rem 1.5rem 4rem;
+      min-height: 100vh; display: flex; align-items: center;
       position: relative; overflow: hidden;
     }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 30%, rgba(212, 168, 83, 0.06) 0%, transparent 70%);
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% 20%, rgba(212,168,83,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(212,168,83,0.04) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg) 0%, #0a0a0a 100%);
     }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
-    .hero-badge {
-      display: inline-block;
-      padding: 0.5rem 1.5rem; border-radius: 100px;
-      border: 1px solid var(--border);
-      background: var(--glow);
-      font-size: 0.75rem; font-weight: 600;
-      color: var(--gold); letter-spacing: 0.15em;
-      text-transform: uppercase; margin-bottom: 2rem;
+    .hero-particles {
+      position: absolute; inset: 0; z-index: 1; overflow: hidden;
     }
+    .particle {
+      position: absolute; border-radius: 50%; background: var(--gold);
+      animation: float linear infinite; opacity: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center;
+      padding: 8rem 1.5rem 4rem; max-width: 900px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 1.5rem; border-radius: 100px;
+      border: 1px solid var(--border); background: var(--glow);
+      font-size: 0.8rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      font-weight: 900; line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900; line-height: 1.05; margin-bottom: 1.5rem;
     }
-    .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    .hero h1 .gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--text-secondary); max-width: 600px;
-      margin: 0 auto 2.5rem; line-height: 1.8;
+    .hero h1 .cursive {
+      font-family: 'Dancing Script', cursive; font-weight: 700;
+      -webkit-text-fill-color: var(--gold-light); font-size: 1.1em;
+    }
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--text-dim);
+      max-width: 650px; margin: 0 auto 3rem; line-height: 1.8; font-weight: 300;
     }
     .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: #000; padding: 1rem 2.5rem; border-radius: 100px;
-      font-weight: 700; font-size: 0.9rem; text-decoration: none;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      transition: all 0.3s; border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
+    .hero-trust {
+      margin-top: 4rem; display: flex; align-items: center; justify-content: center;
+      gap: 3rem; flex-wrap: wrap;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 168, 83, 0.4); }
-    .btn-secondary {
-      background: transparent; color: var(--gold);
-      padding: 1rem 2.5rem; border-radius: 100px;
-      font-weight: 600; font-size: 0.9rem; text-decoration: none;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      border: 1px solid var(--border); transition: all 0.3s;
+    .hero-trust-item { text-align: center; }
+    .hero-trust-item .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .hero-trust-item .label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ═══ MARQUEE ═══ */
+    .marquee-wrap {
+      overflow: hidden; padding: 2rem 0;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--glow);
     }
-    .btn-secondary:hover { border-color: var(--gold); background: var(--glow); }
+    .marquee {
+      display: flex; gap: 4rem; animation: scroll-left 30s linear infinite; white-space: nowrap;
+    }
+    .marquee span {
+      font-family: 'Playfair Display', serif; font-size: 1.1rem;
+      color: var(--text-muted); font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; flex-shrink: 0;
+    }
+    .marquee .sep { color: var(--gold); }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* ═══ SECTIONS ═══ */
-    section { padding: 6rem 1.5rem; }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
+    section { padding: 7rem 0; }
     .section-label {
-      display: inline-block; font-size: 0.75rem; font-weight: 700;
-      color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
-      margin-bottom: 1rem;
+      font-size: 0.75rem; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      font-weight: 700; line-height: 1.15; margin-bottom: 1.25rem;
     }
-    .section-subtitle {
-      font-size: 1.1rem; color: var(--text-secondary);
-      max-width: 600px; margin-bottom: 3rem; line-height: 1.8;
+    .section-desc {
+      font-size: 1.1rem; color: var(--text-dim); max-width: 600px;
+      line-height: 1.8; font-weight: 300;
     }
+    .section-desc.center { margin: 0 auto; }
 
-    /* ═══ SERVICES CARDS ═══ */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    /* ═══ LETTERS SHOWCASE ═══ */
+    .showcase {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem; margin-top: 3rem;
     }
+    .letter-block {
+      aspect-ratio: 1; border-radius: 1rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900; color: var(--gold);
+      transition: all 0.4s; cursor: default;
+      text-shadow: 0 0 20px rgba(212,168,83,0.3), 0 0 60px rgba(212,168,83,0.1);
+      position: relative; overflow: hidden;
+    }
+    .letter-block::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(212,168,83,0.08), transparent 70%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .letter-block:hover {
+      transform: translateY(-6px) scale(1.05);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px rgba(212,168,83,0.2), 0 20px 40px rgba(0,0,0,0.3);
+      text-shadow: 0 0 30px rgba(212,168,83,0.6), 0 0 80px rgba(212,168,83,0.2);
+    }
+    .letter-block:hover::after { opacity: 1; }
+
+    /* ═══ SERVICES ═══ */
     .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 1.25rem;
-      padding: 2rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 1.5rem; padding: 2.5rem 2rem;
+      transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
       position: relative; overflow: hidden;
     }
     .service-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0; transition: opacity 0.4s;
+      opacity: 0; transition: opacity 0.5s;
     }
     .service-card:hover {
-      border-color: var(--border-hover);
-      background: var(--bg-card-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--border-hover); background: var(--bg-elevated);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4), 0 0 30px var(--glow);
     }
     .service-card:hover::before { opacity: 1; }
-    .service-icon {
-      width: 56px; height: 56px; border-radius: 1rem;
+    .service-emoji { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; }
+    .service-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .service-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.75; }
+    .service-tag {
+      display: inline-block; margin-top: 1.25rem; padding: 0.4rem 1rem;
+      border-radius: 100px; font-size: 0.75rem; font-weight: 700;
       background: var(--glow); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 1.25rem;
+      color: var(--gold); letter-spacing: 0.05em;
     }
-    .service-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .service-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
-    .service-price {
-      margin-top: 1.25rem; padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-      display: flex; align-items: baseline; gap: 0.5rem;
-    }
-    .service-price .from { font-size: 0.8rem; color: var(--text-muted); }
-    .service-price .price { font-size: 1.5rem; font-weight: 800; color: var(--gold); }
-    .service-price .unit { font-size: 0.85rem; color: var(--text-muted); }
 
-    /* ═══ PORTFOLIO GALLERY ═══ */
-    .gallery-grid {
+    /* ═══ GALLERY ═══ */
+    .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 250px;
+      gap: 0.75rem;
     }
     .gallery-item {
-      position: relative; overflow: hidden;
-      border-radius: 1rem; aspect-ratio: 4/3;
-      background: var(--bg-card); border: 1px solid var(--border);
-      cursor: pointer; transition: all 0.4s;
+      position: relative; overflow: hidden; border-radius: 1rem;
+      cursor: pointer; transition: all 0.5s;
     }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      border-color: var(--border-hover);
-      box-shadow: 0 10px 30px rgba(212, 168, 83, 0.15);
-    }
-    .gallery-item img {
+    .gallery-item.tall { grid-row: span 2; }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item img, .gallery-item .placeholder {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s;
+      transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
     }
-    .gallery-item:hover img { transform: scale(1.1); }
-    .gallery-overlay {
+    .gallery-item:hover img, .gallery-item:hover .placeholder { transform: scale(1.08); }
+    .gallery-item .overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8));
-      display: flex; align-items: flex-end; padding: 1.25rem;
-      opacity: 0; transition: opacity 0.4s;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem; opacity: 0; transition: opacity 0.5s;
     }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay span { font-size: 0.9rem; font-weight: 600; }
-
-    /* ═══ STATS ═══ */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem; text-align: center; padding: 4rem 0;
+    .gallery-item:hover .overlay { opacity: 1; }
+    .gallery-item:hover { box-shadow: 0 15px 40px rgba(212,168,83,0.15); }
+    .overlay h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .overlay p { font-size: 0.8rem; color: var(--text-dim); }
+    .placeholder {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; background: linear-gradient(135deg, #111, #1a1a1a);
     }
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem; font-weight: 900; color: var(--gold);
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
-
-    /* ═══ TESTIMONIALS ═══ */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-    .testimonial-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 1.25rem; padding: 2rem;
-      transition: all 0.3s;
-    }
-    .testimonial-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-    }
-    .testimonial-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
-    .testimonial-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.25rem; font-style: italic; }
-    .testimonial-author { font-weight: 600; font-size: 0.9rem; }
-    .testimonial-event { font-size: 0.8rem; color: var(--text-muted); }
 
     /* ═══ HOW IT WORKS ═══ */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem; counter-reset: step;
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; position: relative; }
+    .steps::before {
+      content: ''; position: absolute; top: 40px; left: 12%; right: 12%;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--gold), var(--border), transparent);
     }
-    .step-card { text-align: center; padding: 1.5rem; counter-increment: step; }
-    .step-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem; font-weight: 900;
-      color: var(--gold); opacity: 0.3; line-height: 1;
-      margin-bottom: 1rem;
+    .step { text-align: center; position: relative; }
+    .step-num {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--bg-card); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      font-weight: 900; color: var(--gold);
+      transition: all 0.4s; position: relative; z-index: 1;
     }
-    .step-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .step-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+    .step:hover .step-num {
+      border-color: var(--gold); background: var(--glow-strong);
+      box-shadow: 0 0 30px var(--glow);
+      transform: scale(1.1);
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; }
 
-    /* ═══ CTA SECTION ═══ */
-    .cta-section {
-      background: linear-gradient(135deg, rgba(212, 168, 83, 0.08), rgba(212, 168, 83, 0.02));
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
+    /* ═══ TESTIMONIALS ═══ */
+    .testimonial {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 1.5rem; padding: 2.5rem;
+      transition: all 0.4s; position: relative;
     }
+    .testimonial:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .testimonial::before {
+      content: '"'; position: absolute; top: 1rem; right: 1.5rem;
+      font-family: 'Playfair Display', serif; font-size: 5rem;
+      color: var(--gold); opacity: 0.1; line-height: 1;
+    }
+    .testimonial .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial blockquote { font-size: 1rem; color: var(--text-dim); line-height: 1.85; font-style: italic; margin-bottom: 1.5rem; }
+    .testimonial .author { font-weight: 700; font-size: 0.95rem; }
+    .testimonial .event { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ═══ PRICING ═══ */
+    .pricing-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 1.5rem; padding: 2.5rem; text-align: center;
+      transition: all 0.4s; position: relative;
+    }
+    .pricing-card.popular {
+      border-color: var(--gold); background: linear-gradient(180deg, rgba(212,168,83,0.05), var(--bg-card));
+    }
+    .pricing-card.popular::before {
+      content: 'POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: #000; padding: 0.3rem 1.25rem; border-radius: 100px;
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em;
+    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .pricing-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .pricing-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .pricing-card .desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .pricing-amount { margin-bottom: 1.5rem; }
+    .pricing-amount .from { font-size: 0.8rem; color: var(--text-muted); }
+    .pricing-amount .price { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--gold); }
+    .pricing-amount .unit { font-size: 0.85rem; color: var(--text-muted); }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+    .pricing-features li {
+      padding: 0.5rem 0; font-size: 0.9rem; color: var(--text-dim);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .pricing-features .check { color: var(--gold); font-weight: 700; }
+
+    /* ═══ FAQ ═══ */
+    .faq-item {
+      border-bottom: 1px solid var(--border); padding: 1.5rem 0;
+    }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer; font-size: 1.05rem; font-weight: 600; transition: color 0.3s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q .icon { font-size: 1.5rem; color: var(--gold); transition: transform 0.3s; }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s;
+      font-size: 0.95rem; color: var(--text-dim); line-height: 1.8;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 1rem; }
+    .faq-item.open .icon { transform: rotate(45deg); }
 
     /* ═══ CONTACT ═══ */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .form-input {
+      width: 100%; padding: 1rem 1.25rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 0.75rem;
+      color: #fff; font-family: inherit; font-size: 0.95rem;
+      transition: all 0.3s; outline: none;
     }
-    .contact-form input, .contact-form textarea, .contact-form select {
-      width: 100%; padding: 1rem 1.25rem;
+    .form-input:focus { border-color: var(--gold); box-shadow: 0 0 15px var(--glow); }
+    .form-input::placeholder { color: var(--text-muted); }
+    select.form-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23D4A853'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px; }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+
+    .contact-card {
       background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 0.75rem; color: #fff;
-      font-family: 'Inter', sans-serif; font-size: 0.95rem;
-      transition: border-color 0.3s; outline: none;
+      border-radius: 1rem; padding: 1.5rem;
+      display: flex; align-items: center; gap: 1.25rem;
+      margin-bottom: 1rem; transition: all 0.3s;
     }
-    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
-      border-color: var(--gold);
-    }
-    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
-    .contact-form .form-group { margin-bottom: 1rem; }
-    .contact-form label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-secondary); }
-    .contact-info-item {
-      display: flex; align-items: flex-start; gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .contact-info-icon {
-      width: 48px; height: 48px; border-radius: 0.75rem;
+    .contact-card:hover { border-color: var(--border-hover); background: var(--bg-elevated); }
+    .contact-icon {
+      width: 52px; height: 52px; border-radius: 0.75rem;
       background: var(--glow); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; flex-shrink: 0;
+      font-size: 1.4rem; flex-shrink: 0;
     }
-    .contact-info-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .contact-info-item p { font-size: 0.9rem; color: var(--text-secondary); }
-    .contact-info-item a { color: var(--gold); text-decoration: none; }
-    .contact-info-item a:hover { text-decoration: underline; }
+    .contact-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .contact-card p { font-size: 0.9rem; color: var(--text-dim); }
+    .contact-card a { color: var(--gold); }
+
+    /* ═══ FLOATING CTA ═══ */
+    .floating-cta {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; color: #fff; font-size: 1.75rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.3s; text-decoration: none;
+      animation: bounce-soft 3s infinite;
+    }
+    .floating-cta:hover { transform: scale(1.15); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+    @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
     /* ═══ FOOTER ═══ */
     footer {
-      padding: 3rem 1.5rem 2rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
+      padding: 4rem 0 2rem; border-top: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg), #050505);
     }
-    footer p { color: var(--text-muted); font-size: 0.85rem; }
-    .footer-links { display: flex; gap: 2rem; justify-content: center; margin-bottom: 1.5rem; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.7; margin-top: 1rem; }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.9rem; color: var(--text-dim); padding: 0.3rem 0; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; }
+    .footer-bottom p { font-size: 0.8rem; color: var(--text-muted); }
 
     /* ═══ ANIMATIONS ═══ */
-    .fade-in {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 1024px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .steps::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(10, 10, 10, 0.98);
-        padding: 1.5rem; gap: 1rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .hamburger { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(8,8,8,0.98); padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
-      .hero { padding: 7rem 1.5rem 3rem; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-      .stat-number { font-size: 2.25rem; }
+      .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+      .gallery-item.tall { grid-row: span 1; }
+      .gallery-item.wide { grid-column: span 1; }
+      .hero-trust { gap: 1.5rem; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .pricing-card { margin-bottom: 0; }
+      section { padding: 5rem 0; }
+    }
+    @media (max-width: 480px) {
+      .gallery { grid-template-columns: 1fr; }
+      .showcase { grid-template-columns: repeat(5, 1fr); }
+      .steps { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ NAVIGATION ═══ -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Total<span>Print</span></a>
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/40740000000?text=Bună! Vreau să închiriez litere luminoase pentru evenimentul meu." target="_blank" class="floating-cta" aria-label="WhatsApp">💬</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo"><em>Total</em>Print</a>
     <div class="nav-links" id="navLinks">
       <a href="#servicii">Servicii</a>
-      <a href="#portofoliu">Portofoliu</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#preturi">Prețuri</a>
       <a href="#cum-functioneaza">Cum Funcționează</a>
-      <a href="#testimoniale">Recenzii</a>
+      <a href="#intrebari">FAQ</a>
       <a href="#contact" class="nav-cta">Solicită Ofertă</a>
     </div>
-    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="acasa">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
   <div class="hero-content">
-    <div class="hero-badge">✨ Nr. 1 în Transilvania</div>
+    <div class="hero-eyebrow"><span class="dot"></span> Închiriere Litere Luminoase • Cluj-Napoca</div>
     <h1>
-      Litere Luminoase<br>
-      <span class="highlight">pentru Evenimente Unice</span>
+      Tu Scrii Mesajul,<br>
+      <span class="gold">Noi Îl Aprindem</span> <span class="cursive">✨</span>
     </h1>
-    <p>
-      Transformă evenimentul tău într-o experiență de neuitat cu literele noastre LED gigante de 1.2m. 
-      Nunți, petreceri corporate, botezuri — noi aducem strălucirea.
+    <p class="hero-sub">
+      Litere luminoase LED gigante de 1.2 metri pentru nunți, botezuri, aniversări și evenimente corporate. 
+      Transport, montaj și ridicare — totul inclus.
     </p>
     <div class="hero-buttons">
-      <a href="#contact" class="btn-primary">Solicită Ofertă Gratuită</a>
-      <a href="#portofoliu" class="btn-secondary">Vezi Portofoliul</a>
+      <a href="#contact" class="btn btn-gold btn-lg">Solicită Ofertă Gratuită</a>
+      <a href="https://wa.me/40740000000?text=Bună! Vreau să închiriez litere luminoase." target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp Direct</a>
+    </div>
+    <div class="hero-trust">
+      <div class="hero-trust-item"><div class="num" data-count="500">0</div><div class="label">Evenimente</div></div>
+      <div class="hero-trust-item"><div class="num" data-count="50">0</div><div class="label">Litere & Cifre</div></div>
+      <div class="hero-trust-item"><div class="num">5 ★</div><div class="label">Rating Google</div></div>
+      <div class="hero-trust-item"><div class="num" data-count="120">0</div><div class="label">cm Înălțime</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ STATS ═══ -->
-<section style="padding: 2rem 1.5rem 4rem;">
-  <div class="section-inner">
-    <div class="stats-grid fade-in">
-      <div>
-        <div class="stat-number">500+</div>
-        <div class="stat-label">Evenimente Realizate</div>
-      </div>
-      <div>
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Clienți Mulțumiți</div>
-      </div>
-      <div>
-        <div class="stat-number">50+</div>
-        <div class="stat-label">Litere & Numere</div>
-      </div>
-      <div>
-        <div class="stat-number">1.2m</div>
-        <div class="stat-label">Înălțime Litere</div>
-      </div>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee">
+    <span>LOVE</span><span class="sep">✦</span>
+    <span>MR & MRS</span><span class="sep">✦</span>
+    <span>BABY</span><span class="sep">✦</span>
+    <span>HAPPY BIRTHDAY</span><span class="sep">✦</span>
+    <span>HOME</span><span class="sep">✦</span>
+    <span>NUNTĂ</span><span class="sep">✦</span>
+    <span>#HASHTAG</span><span class="sep">✦</span>
+    <span>CIFRE 0-9</span><span class="sep">✦</span>
+    <span>BOTEZ</span><span class="sep">✦</span>
+    <span>CORPORATE</span><span class="sep">✦</span>
+    <span>LOVE</span><span class="sep">✦</span>
+    <span>MR & MRS</span><span class="sep">✦</span>
+    <span>BABY</span><span class="sep">✦</span>
+    <span>HAPPY BIRTHDAY</span><span class="sep">✦</span>
+    <span>HOME</span><span class="sep">✦</span>
+    <span>NUNTĂ</span><span class="sep">✦</span>
+    <span>#HASHTAG</span><span class="sep">✦</span>
+    <span>CIFRE 0-9</span><span class="sep">✦</span>
+    <span>BOTEZ</span><span class="sep">✦</span>
+    <span>CORPORATE</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- LETTERS SHOWCASE -->
+<section>
+  <div class="container text-center">
+    <div class="section-label reveal">Colecția Noastră</div>
+    <h2 class="section-title reveal">Litere Disponibile</h2>
+    <p class="section-desc center reveal">Avem toate literele alfabetului, cifrele 0-9 și simboluri speciale. Alege orice combinație!</p>
+    <div class="showcase reveal">
+      <div class="letter-block">L</div><div class="letter-block">O</div><div class="letter-block">V</div><div class="letter-block">E</div>
+      <div class="letter-block">M</div><div class="letter-block">R</div><div class="letter-block">&</div><div class="letter-block">S</div>
+      <div class="letter-block">B</div><div class="letter-block">A</div><div class="letter-block">B</div><div class="letter-block">Y</div>
     </div>
+    <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;" class="reveal">+ toate literele A-Z, cifrele 0-9, ❤️ # @ ! și simboluri custom</p>
   </div>
 </section>
 
-<!-- ═══ SERVICII ═══ -->
-<section id="servicii">
-  <div class="section-inner">
-    <div class="section-label">Serviciile Noastre</div>
-    <h2 class="section-title">Ce Oferim</h2>
-    <p class="section-subtitle">
-      De la litere luminoase clasice până la cifre și simboluri speciale — avem tot ce ai nevoie pentru un eveniment de vis.
-    </p>
-
-    <div class="services-grid">
-      <div class="service-card fade-in">
-        <div class="service-icon">💒</div>
+<!-- SERVICII -->
+<section id="servicii" style="background: linear-gradient(180deg, var(--bg), #060606, var(--bg));">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-label reveal">Servicii</div>
+      <h2 class="section-title reveal">Pentru Orice Eveniment</h2>
+      <p class="section-desc center reveal">De la nunți intime la gale corporate cu sute de invitați — literele noastre fac orice spațiu memorabil.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-emoji">💒</span>
         <h3>Nunți & Logodne</h3>
-        <p>Literele LOVE, MR & MRS, inițialele mirilor sau data nunții — creează fundalul perfect pentru fotografii de neuitat.</p>
-        <div class="service-price">
-          <span class="from">de la</span>
-          <span class="price">800 lei</span>
-          <span class="unit">/ eveniment</span>
-        </div>
+        <p>LOVE, MR & MRS, inițialele mirilor, data nunții. Fundalul perfect pentru fotografii care vor rămâne o viață.</p>
+        <span class="service-tag">Cel mai cerut</span>
       </div>
-
-      <div class="service-card fade-in">
-        <div class="service-icon">🎉</div>
-        <h3>Petreceri & Aniversări</h3>
-        <p>Cifre luminoase pentru aniversări, mesaje personalizate pentru petreceri tematice, botezuri și zile de naștere speciale.</p>
-        <div class="service-price">
-          <span class="from">de la</span>
-          <span class="price">500 lei</span>
-          <span class="unit">/ eveniment</span>
-        </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-emoji">🎂</span>
+        <h3>Aniversări & Zile de Naștere</h3>
+        <p>Cifre luminoase mari, mesaje personalizate. De la 1 la 100 — fiecare cifră strălucește.</p>
+        <span class="service-tag">Toate cifrele disponibile</span>
       </div>
-
-      <div class="service-card fade-in">
-        <div class="service-icon">🏢</div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-emoji">👶</span>
+        <h3>Botezuri</h3>
+        <p>Numele bebelușului în litere luminoase — momentul magic surprins perfect de toți invitații.</p>
+        <span class="service-tag">Personalizat</span>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-emoji">🏢</span>
         <h3>Evenimente Corporate</h3>
-        <p>Logo-uri luminoase, hashtag-uri pentru social media, litere pentru lansări de produse, conferințe și gale de premiere.</p>
-        <div class="service-price">
-          <span class="from">de la</span>
-          <span class="price">1200 lei</span>
-          <span class="unit">/ eveniment</span>
-        </div>
+        <p>Logo-uri, hashtag-uri, mesaje de brand. Gale, lansări de produse, teambuilding-uri — impactul vizual maxim.</p>
+        <span class="service-tag">Brand awareness</span>
       </div>
-
-      <div class="service-card fade-in">
-        <div class="service-icon">📸</div>
-        <h3>Photo Booth LED</h3>
-        <p>Cadrul perfect pentru selfie-uri și fotografii de grup. Combinăm literele luminoase cu fundaluri elegante pentru experiențe memorabile.</p>
-        <div class="service-price">
-          <span class="from">de la</span>
-          <span class="price">600 lei</span>
-          <span class="unit">/ eveniment</span>
-        </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-emoji">🎉</span>
+        <h3>Petreceri Private</h3>
+        <p>Absolviri, revelion, petreceri tematice, burlăcițe. Orice motiv de sărbătoare merită litere luminoase.</p>
+        <span class="service-tag">Fun guaranteed</span>
       </div>
-
-      <div class="service-card fade-in">
-        <div class="service-icon">🎄</div>
-        <h3>Decorațiuni Sezoniere</h3>
-        <p>Crăciun, Revelion, Valentine's Day — decorează spațiul comercial sau evenimentul cu litere tematice strălucitoare.</p>
-        <div class="service-price">
-          <span class="from">de la</span>
-          <span class="price">700 lei</span>
-          <span class="unit">/ eveniment</span>
-        </div>
-      </div>
-
-      <div class="service-card fade-in">
-        <div class="service-icon">🎨</div>
-        <h3>Custom & Personalizat</h3>
-        <p>Ai o idee specială? Realizăm litere, cifre și simboluri personalizate la comandă. Spune-ne viziunea ta și noi o facem realitate.</p>
-        <div class="service-price">
-          <span class="from">preț</span>
-          <span class="price">la cerere</span>
-        </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-emoji">🎨</span>
+        <h3>Custom & Special</h3>
+        <p>Ai o idee unică? Simboluri speciale, emoji-uri, combinații neobișnuite — le realizăm la comandă.</p>
+        <span class="service-tag">La cerere</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ PORTOFOLIU ═══ -->
-<section id="portofoliu" style="background: rgba(255,255,255,0.01);">
-  <div class="section-inner">
-    <div class="section-label">Portofoliu</div>
-    <h2 class="section-title">Evenimentele Noastre</h2>
-    <p class="section-subtitle">
-      Fiecare eveniment este unic. Iată câteva din momentele magice pe care le-am creat pentru clienții noștri.
-    </p>
-
-    <div class="gallery-grid">
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">💒</div>
-        <div class="gallery-overlay"><span>Nuntă — LOVE Letters</span></div>
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-label reveal">Portofoliu</div>
+      <h2 class="section-title reveal">Momente Create de Noi</h2>
+      <p class="section-desc center reveal">Fiecare eveniment e unic. Fiecare literă strălucește diferit. Iată câteva din poveștile clienților noștri.</p>
+    </div>
+    <div class="gallery reveal">
+      <div class="gallery-item tall">
+        <div class="placeholder">💒</div>
+        <div class="overlay"><h4>Nuntă Elegantă</h4><p>LOVE — Cluj-Napoca</p></div>
       </div>
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #2d1b3d, #1a1a2e);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🎂</div>
-        <div class="gallery-overlay"><span>Aniversare 30 — Cifre Luminoase</span></div>
+      <div class="gallery-item">
+        <div class="placeholder" style="background: linear-gradient(135deg, #1a0a2e, #0a1a2e);">🎂</div>
+        <div class="overlay"><h4>Aniversare 30</h4><p>Cifre luminoase gigante</p></div>
       </div>
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a1a2e, #0d1b2a);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🏢</div>
-        <div class="gallery-overlay"><span>Eveniment Corporate — Hashtag LED</span></div>
+      <div class="gallery-item">
+        <div class="placeholder" style="background: linear-gradient(135deg, #0a1a0e, #1a2a1e);">👶</div>
+        <div class="overlay"><h4>Botez</h4><p>Numele bebelușului iluminat</p></div>
       </div>
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1b2a1a, #1a1a2e);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">👶</div>
-        <div class="gallery-overlay"><span>Botez — Numele Bebelușului</span></div>
+      <div class="gallery-item wide">
+        <div class="placeholder" style="background: linear-gradient(135deg, #1a1a0e, #2a1a0e);">🏢</div>
+        <div class="overlay"><h4>Eveniment Corporate</h4><p>#Hashtag brand — Cluj Business Park</p></div>
       </div>
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #2a1b1b, #1a1a2e);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">💕</div>
-        <div class="gallery-overlay"><span>Logodnă — MR & MRS</span></div>
-      </div>
-      <div class="gallery-item fade-in" style="background: linear-gradient(135deg, #1a2a1b, #1a1a2e);">
-        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🎄</div>
-        <div class="gallery-overlay"><span>Crăciun — Decorațiuni Sezoniere</span></div>
+      <div class="gallery-item">
+        <div class="placeholder" style="background: linear-gradient(135deg, #2a0a1a, #1a0a2a);">💕</div>
+        <div class="overlay"><h4>Logodnă</h4><p>MR & MRS — Turda</p></div>
       </div>
     </div>
-
-    <div style="text-align: center; margin-top: 2.5rem;">
-      <a href="https://www.instagram.com/total.events.cluj" target="_blank" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-        📷 Vezi mai multe pe Instagram
-      </a>
+    <div class="text-center" style="margin-top: 2.5rem;">
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank" class="btn btn-outline">📷 Vezi Toate Pozele pe Instagram</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ CUM FUNCȚIONEAZĂ ═══ -->
+<!-- PREȚURI -->
+<section id="preturi" style="background: linear-gradient(180deg, var(--bg), #060606, var(--bg));">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-label reveal">Prețuri Transparente</div>
+      <h2 class="section-title reveal">Pachete & Tarife</h2>
+      <p class="section-desc center reveal">Fără costuri ascunse. Prețul include transport, montaj, funcționare și ridicare.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="pricing-card reveal reveal-delay-1">
+        <div class="pricing-emoji">🔤</div>
+        <h3>Pachet Simplu</h3>
+        <div class="desc">1–3 litere sau cifre</div>
+        <div class="pricing-amount">
+          <div class="from">de la</div>
+          <div class="price">400</div>
+          <div class="unit">lei / eveniment</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 1-3 litere/cifre luminoase</li>
+          <li><span class="check">✓</span> Transport inclus (Cluj)</li>
+          <li><span class="check">✓</span> Montaj & ridicare</li>
+          <li><span class="check">✓</span> Funcționare toată seara</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width: 100%;">Solicită Ofertă</a>
+      </div>
+      <div class="pricing-card popular reveal reveal-delay-2">
+        <div class="pricing-emoji">💒</div>
+        <h3>Pachet Nuntă</h3>
+        <div class="desc">LOVE sau MR & MRS (4–7 litere)</div>
+        <div class="pricing-amount">
+          <div class="from">de la</div>
+          <div class="price">800</div>
+          <div class="unit">lei / eveniment</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 4-7 litere luminoase</li>
+          <li><span class="check">✓</span> Transport inclus (50km)</li>
+          <li><span class="check">✓</span> Montaj & ridicare</li>
+          <li><span class="check">✓</span> Funcționare non-stop</li>
+          <li><span class="check">✓</span> Consultanță aranjament</li>
+        </ul>
+        <a href="#contact" class="btn btn-gold" style="width: 100%;">Solicită Ofertă</a>
+      </div>
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="pricing-emoji">🏢</div>
+        <h3>Pachet Corporate</h3>
+        <div class="desc">8+ litere, logo-uri, hashtag-uri</div>
+        <div class="pricing-amount">
+          <div class="from">de la</div>
+          <div class="price">1500</div>
+          <div class="unit">lei / eveniment</div>
+        </div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> 8+ litere/simboluri</li>
+          <li><span class="check">✓</span> Transport oriunde în TRansilvania</li>
+          <li><span class="check">✓</span> Montaj profesional</li>
+          <li><span class="check">✓</span> Branding personalizat</li>
+          <li><span class="check">✓</span> Photo backdrop setup</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width: 100%;">Solicită Ofertă</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUM FUNCȚIONEAZĂ -->
 <section id="cum-functioneaza">
-  <div class="section-inner">
-    <div class="section-label">Cum Funcționează</div>
-    <h2 class="section-title">Simplu ca 1-2-3-4</h2>
-    <p class="section-subtitle">
-      Ne ocupăm de tot — tu te bucuri de eveniment.
-    </p>
-
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-number">01</div>
-        <h3>Alege Literele</h3>
-        <p>Spune-ne ce mesaj vrei, data și locația evenimentului. Te ajutăm să alegi combinația perfectă.</p>
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 4rem;">
+      <div class="section-label reveal">Proces Simplu</div>
+      <h2 class="section-title reveal">4 Pași Simpli</h2>
+      <p class="section-desc center reveal">Tu te bucuri de eveniment. Noi ne ocupăm de tot restul.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>Scrie-ne</h3>
+        <p>Spune-ne ce litere vrei, data și locația. Răspundem în maxim 2 ore.</p>
       </div>
-      <div class="step-card fade-in">
-        <div class="step-number">02</div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">2</div>
         <h3>Primești Oferta</h3>
-        <p>Îți trimitem oferta personalizată în maxim 2 ore. Fără costuri ascunse — prețul include totul.</p>
+        <p>Ofertă clară, fără surprize. Totul inclus — transport, montaj, ridicare.</p>
       </div>
-      <div class="step-card fade-in">
-        <div class="step-number">03</div>
-        <h3>Livrăm & Instalăm</h3>
-        <p>Echipa noastră aduce literele, le instalează profesional și se asigură că totul arată perfect.</p>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>Montăm Noi</h3>
+        <p>Echipa noastră vine, montează totul profesional și verifică fiecare bec.</p>
       </div>
-      <div class="step-card fade-in">
-        <div class="step-number">04</div>
-        <h3>Ridicăm După</h3>
-        <p>La finalul evenimentului, venim și ridicăm totul. Zero stress pentru tine.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CTA ═══ -->
-<section class="cta-section">
-  <div class="section-inner" style="text-align: center;">
-    <h2 class="section-title">Pregătit să Strălucești?</h2>
-    <p class="section-subtitle" style="margin: 1rem auto 2.5rem;">
-      Literele noastre luminoase transformă orice spațiu într-o scenă de film. 
-      Contactează-ne astăzi și primește o ofertă gratuită în maxim 2 ore.
-    </p>
-    <a href="#contact" class="btn-primary" style="font-size: 1rem; padding: 1.25rem 3rem;">
-      Solicită Ofertă Gratuită →
-    </a>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIALE ═══ -->
-<section id="testimoniale">
-  <div class="section-inner">
-    <div class="section-label">Recenzii</div>
-    <h2 class="section-title">Ce Spun Clienții Noștri</h2>
-    <p class="section-subtitle">
-      Fiecare eveniment lasă o amintire. Iată ce spun clienții noștri despre experiența cu TotalPrint.
-    </p>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-in">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Literele LOVE au fost punctul central al nunții noastre! Toți invitații au făcut poze lângă ele. Echipa a fost super profesionistă, au instalat totul rapid și discret."</p>
-        <div class="testimonial-author">Andreea & Mihai</div>
-        <div class="testimonial-event">Nuntă — Cluj-Napoca, 2025</div>
-      </div>
-
-      <div class="testimonial-card fade-in">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Am folosit serviciile TotalPrint pentru lansarea noului nostru produs. Hashtag-ul luminoas a fost viral pe Instagram! ROI-ul investiției a fost incredibil."</p>
-        <div class="testimonial-author">Maria Popescu</div>
-        <div class="testimonial-event">Eveniment Corporate — Cluj Business Park</div>
-      </div>
-
-      <div class="testimonial-card fade-in">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">"Cifrele luminoase pentru aniversarea de 40 de ani a tatei au fost spectaculoase! Calitate excepțională și prețuri corecte. Recomand cu toată încrederea!"</p>
-        <div class="testimonial-author">Alexandru D.</div>
-        <div class="testimonial-event">Aniversare — Turda, 2025</div>
+      <div class="step reveal reveal-delay-4">
+        <div class="step-num">4</div>
+        <h3>Strălucești!</h3>
+        <p>Tu te bucuri, invitații fac poze, noi ridicăm la final. Zero stress.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Hai Să Vorbim</h2>
-    <p class="section-subtitle">
-      Completează formularul sau contactează-ne direct. Răspundem în maxim 2 ore.
-    </p>
+<!-- TESTIMONIALE -->
+<section id="testimoniale" style="background: linear-gradient(180deg, var(--bg), #060606, var(--bg));">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-label reveal">Recenzii</div>
+      <h2 class="section-title reveal">Ce Spun Clienții</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="testimonial reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <blockquote>Literele LOVE au fost SENZAȚIONALE! Toți invitații au vrut poze. Echipa super profesionistă — au venit, au montat și am uitat de ele până la final când le-au ridicat. 100% recomand!</blockquote>
+        <div class="author">Andreea & Mihai</div>
+        <div class="event">Nuntă — Sala Crystal, Cluj-Napoca</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <blockquote>Am luat cifre luminoase pentru aniversarea de 40 de ani. Efectul a fost WOW — toată lumea a fost impresionată. Prețuri corecte și livrare la timp. Vom reveni cu siguranță!</blockquote>
+        <div class="author">Alexandru D.</div>
+        <div class="event">Aniversare 40 — Restaurant Napoca</div>
+      </div>
+      <div class="testimonial reveal reveal-delay-3">
+        <div class="stars">★★★★★</div>
+        <blockquote>Am folosit literele pentru lansarea brandului nostru. Hashtag-ul a fost viral pe Instagram! ROI incredibil. Colaborare excelentă de la primul mesaj până la ridicare.</blockquote>
+        <div class="author">Maria P. — Marketing Manager</div>
+        <div class="event">Lansare Brand — Cluj Business Park</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="contact-grid">
-      <form class="contact-form fade-in" onsubmit="event.preventDefault(); alert('Mulțumim! Te vom contacta în curând. 🌟'); this.reset();">
-        <div class="form-group">
-          <label>Numele Tău</label>
-          <input type="text" placeholder="ex: Maria Ionescu" required>
+<!-- FAQ -->
+<section id="intrebari">
+  <div class="container" style="max-width: 800px;">
+    <div class="text-center" style="margin-bottom: 3rem;">
+      <div class="section-label reveal">Întrebări Frecvente</div>
+      <h2 class="section-title reveal">Tot Ce Vrei Să Știi</h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Cât de mari sunt literele?</span><span class="icon">+</span>
         </div>
-        <div class="form-group">
-          <label>Telefon</label>
-          <input type="tel" placeholder="ex: 0740 123 456" required>
+        <div class="faq-a">Literele noastre au o înălțime de aproximativ 120 cm (1.2 metri). Sunt vizibile de la distanță mare și perfecte atât pentru interior cât și exterior.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Cât timp înainte trebuie să rezerv?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Recomandăm rezervarea cu minimum 2 săptămâni înainte, mai ales pentru weekenduri. Pentru nunți, ideal este cu 1-2 luni în avans. Dar ne descurcăm și cu cereri de ultimă oră — contactează-ne!</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Livrați și în afara Clujului?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Da! Acoperim toată Transilvania — Cluj, Alba, Bistrița, Mureș, Sibiu, Sălaj, Maramureș și împrejurimi. Transportul în Cluj este inclus. Pentru distanțe mai mari se adaugă o taxa de transport.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Funcționează și în exterior?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Da, literele funcționează excelent atât interior cât și exterior. Sunt cele mai spectaculoase seara / noaptea. Pentru evenimente în aer liber avem grijă să protejăm echipamentul.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Ce se întâmplă dacă se strică un bec?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Fiecare literă este verificată cu atenție înainte de livrare. Folosim becuri LED de calitate superioară cu durată lungă de viață. În cazul improbabil al unei probleme, o rezolvăm pe loc sau înlocuim litera.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Ce litere și simboluri aveți disponibile?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Avem toate literele A-Z, cifrele 0-9, plus simboluri speciale: & (ampersand), ❤️ (inimă), # (hashtag), @ și altele. Pentru simboluri custom, contactează-ne cu minim 3 săptămâni înainte.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Cum se face plata?</span><span class="icon">+</span>
+        </div>
+        <div class="faq-a">Acceptăm plata cash la livrare, transfer bancar sau plată cu cardul. Pentru rezervare cerem un avans de 30% care se scade din totalul final.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(212,168,83,0.02)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container text-center">
+    <h2 class="section-title reveal" style="font-size: clamp(2rem, 4vw, 3rem);">Pregătit Să Strălucești?</h2>
+    <p class="section-desc center reveal" style="margin-bottom: 2.5rem;">Scrie-ne acum și primești oferta în maxim 2 ore. Locurile se ocupă rapid!</p>
+    <div class="flex-center gap-3 reveal" style="flex-wrap: wrap;">
+      <a href="#contact" class="btn btn-gold btn-lg">Solicită Ofertă Gratuită</a>
+      <a href="https://wa.me/40740000000" target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp</a>
+      <a href="tel:+40740000000" class="btn btn-outline btn-lg">📞 Sună Acum</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-title reveal">Hai Să Vorbim</h2>
+      <p class="section-desc center reveal">Completează formularul sau contactează-ne direct. Răspundem rapid!</p>
+    </div>
+    <div class="contact-grid">
+      <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Trimis!'; this.querySelector('button').disabled=true; setTimeout(() => { this.reset(); this.querySelector('button').textContent='Trimite Cererea →'; this.querySelector('button').disabled=false; }, 3000);">
+        <div class="grid grid-2 gap-3">
+          <div class="form-group">
+            <label>Numele Tău *</label>
+            <input type="text" class="form-input" placeholder="Maria Ionescu" required>
+          </div>
+          <div class="form-group">
+            <label>Telefon *</label>
+            <input type="tel" class="form-input" placeholder="0740 123 456" required>
+          </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="ex: maria@email.com">
+          <input type="email" class="form-input" placeholder="maria@email.com">
+        </div>
+        <div class="grid grid-2 gap-3">
+          <div class="form-group">
+            <label>Tip Eveniment *</label>
+            <select class="form-input" required>
+              <option value="">Selectează...</option>
+              <option>Nuntă</option>
+              <option>Botez</option>
+              <option>Aniversare</option>
+              <option>Eveniment Corporate</option>
+              <option>Petrecere</option>
+              <option>Altele</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data Evenimentului</label>
+            <input type="date" class="form-input">
+          </div>
         </div>
         <div class="form-group">
-          <label>Tip Eveniment</label>
-          <select required>
-            <option value="">Selectează...</option>
-            <option>Nuntă</option>
-            <option>Botez</option>
-            <option>Aniversare</option>
-            <option>Eveniment Corporate</option>
-            <option>Petrecere</option>
-            <option>Altele</option>
-          </select>
+          <label>Ce Litere / Mesaj Dorești? *</label>
+          <textarea class="form-input" placeholder="ex: LOVE, MR & MRS, cifra 30, numele ANDREI..." required></textarea>
         </div>
-        <div class="form-group">
-          <label>Data Evenimentului</label>
-          <input type="date">
-        </div>
-        <div class="form-group">
-          <label>Ce Litere / Mesaj Dorești?</label>
-          <textarea rows="3" placeholder="ex: LOVE, MR & MRS, cifre aniversare, hashtag..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">
-          Trimite Cererea →
-        </button>
+        <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Trimite Cererea →</button>
       </form>
 
-      <div class="fade-in">
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📍</div>
+      <div class="reveal">
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
           <div>
             <h4>Locație</h4>
             <p>Cluj-Napoca, România<br>Livrăm în toată Transilvania</p>
           </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📱</div>
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
           <div>
-            <h4>Telefon / WhatsApp</h4>
+            <h4>Telefon & WhatsApp</h4>
             <p><a href="tel:+40740000000">+40 740 000 000</a></p>
           </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📧</div>
+        <div class="contact-card">
+          <div class="contact-icon">📧</div>
           <div>
             <h4>Email</h4>
             <p><a href="mailto:contact@totalprint.ro">contact@totalprint.ro</a></p>
           </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📷</div>
+        <div class="contact-card">
+          <div class="contact-icon">📷</div>
           <div>
             <h4>Instagram</h4>
             <p><a href="https://www.instagram.com/total.events.cluj" target="_blank">@total.events.cluj</a></p>
           </div>
         </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">⏰</div>
+        <div class="contact-card">
+          <div class="contact-icon">⏰</div>
           <div>
             <h4>Program</h4>
-            <p>Luni — Vineri: 09:00 – 20:00<br>Sâmbătă — Duminică: La cerere</p>
+            <p>Luni – Duminică: 09:00 – 21:00<br>Disponibili non-stop pe WhatsApp</p>
           </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; text-align: center;">
+          <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Răspundem în <span style="color: var(--gold);">maxim 2 ore</span></p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">De obicei mult mai repede 😊</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer>
-  <div class="section-inner">
-    <div class="footer-links">
-      <a href="#acasa">Acasă</a>
-      <a href="#servicii">Servicii</a>
-      <a href="#portofoliu">Portofoliu</a>
-      <a href="#contact">Contact</a>
-      <a href="https://www.instagram.com/total.events.cluj" target="_blank">Instagram</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size: 1.8rem;"><em>Total</em>Print</div>
+        <p>Închiriere litere luminoase LED pentru evenimente speciale. Cluj-Napoca și toată Transilvania. Transport, montaj și ridicare incluse.</p>
+        <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+          <a href="https://www.instagram.com/total.events.cluj" target="_blank" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">📷</a>
+          <a href="https://wa.me/40740000000" target="_blank" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">💬</a>
+          <a href="tel:+40740000000" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">📞</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigare</h4>
+        <a href="#servicii">Servicii</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#preturi">Prețuri</a>
+        <a href="#intrebari">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Servicii</h4>
+        <a href="#servicii">Nunți</a>
+        <a href="#servicii">Botezuri</a>
+        <a href="#servicii">Aniversări</a>
+        <a href="#servicii">Corporate</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+40740000000">📱 +40 740 000 000</a>
+        <a href="mailto:contact@totalprint.ro">📧 contact@totalprint.ro</a>
+        <a href="https://www.instagram.com/total.events.cluj" target="_blank">📷 @total.events.cluj</a>
+        <a href="#contact">📍 Cluj-Napoca</a>
+      </div>
     </div>
-    <p style="margin-bottom: 0.5rem;">
-      <a href="#" class="nav-logo" style="font-size: 1.25rem; text-decoration: none;">Total<span style="color: #fff;">Print</span></a>
-    </p>
-    <p>© 2026 TotalPrint. Toate drepturile rezervate. Cluj-Napoca, România.</p>
+    <div class="footer-bottom">
+      <p>© 2026 TotalPrint — Litere Luminoase LED. Toate drepturile rezervate. Cluj-Napoca, România.</p>
+    </div>
   </div>
 </footer>
 
-<!-- ═══ SCRIPTS ═══ -->
 <script>
-  // Navbar scroll effect
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 80));
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('open');
+}));
+
+// Reveal on scroll
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Counter animation
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count);
+    if (!target) return;
+    let current = 0;
+    const step = Math.max(1, Math.ceil(target / 60));
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { current = target; clearInterval(timer); }
+      el.textContent = current + '+';
+    }, 25);
+    countObserver.unobserve(el);
   });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
 
-  // Fade-in on scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+// Particles
+const pc = document.getElementById('particles');
+for (let i = 0; i < 25; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+  p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+  p.style.animationDelay = (Math.random() * 10) + 's';
+  pc.appendChild(p);
+}
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.getElementById('navLinks').classList.remove('open');
-      }
-    });
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
 </script>
-
 </body>
 </html>
