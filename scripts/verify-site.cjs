@@ -5,6 +5,7 @@ const vm = require('node:vm');
 
 const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 const { buildContactMailto } = require(path.join(root, 'contact.js'));
 
 const mailto = new URL(buildContactMailto({
@@ -40,4 +41,14 @@ const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script
   .filter(Boolean);
 inlineScripts.forEach((source) => new vm.Script(source));
 
-console.log(`Site verification passed: contact delivery, interaction contracts, and ${inlineScripts.length} inline script block are valid.`);
+const siteHeaderRule = vercelConfig.headers.find((rule) => rule.source === '/(.*)');
+assert.ok(siteHeaderRule, 'missing catch-all Vercel header rule');
+const siteHeaders = Object.fromEntries(
+  siteHeaderRule.headers.map(({ key, value }) => [key.toLowerCase(), value]),
+);
+assert.equal(siteHeaders['x-content-type-options'], 'nosniff');
+assert.equal(siteHeaders['x-frame-options'], 'DENY');
+assert.equal(siteHeaders['referrer-policy'], 'strict-origin-when-cross-origin');
+assert.equal(siteHeaders['permissions-policy'], 'camera=(), microphone=(), geolocation=()');
+
+console.log(`Site verification passed: contact delivery, interaction and security-header contracts, and ${inlineScripts.length} inline script block are valid.`);
