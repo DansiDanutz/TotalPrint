@@ -6,6 +6,7 @@ const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+const verifyWorkflow = fs.readFileSync(path.join(root, '.github/workflows/verify.yml'), 'utf8');
 const { buildContactMailto } = require(path.join(root, 'contact.js'));
 
 const mailto = new URL(buildContactMailto({
@@ -51,4 +52,20 @@ assert.equal(siteHeaders['x-frame-options'], 'DENY');
 assert.equal(siteHeaders['referrer-policy'], 'strict-origin-when-cross-origin');
 assert.equal(siteHeaders['permissions-policy'], 'camera=(), microphone=(), geolocation=()');
 
-console.log(`Site verification passed: contact delivery, interaction and security-header contracts, and ${inlineScripts.length} inline script block are valid.`);
+assert.match(
+  verifyWorkflow,
+  /actions\/checkout@11d5960a326750d5838078e36cf38b85af677262\b/,
+  'actions/checkout must be pinned to the verified v4 commit',
+);
+assert.match(
+  verifyWorkflow,
+  /actions\/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020\b/,
+  'actions/setup-node must be pinned to the verified v4 commit',
+);
+assert.doesNotMatch(
+  verifyWorkflow,
+  /uses:\s+actions\/(?:checkout|setup-node)@v\d+\b/,
+  'official actions must not use mutable major-version tags',
+);
+
+console.log(`Site verification passed: contact delivery, interaction, security-header, and pinned-action contracts, and ${inlineScripts.length} inline script block are valid.`);
