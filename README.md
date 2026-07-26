@@ -7,8 +7,16 @@
 - Fully responsive (mobile-first)
 - Romanian language
 - Scroll animations
-- Contact form
+- Contact form that prepares a complete email enquiry without discarding customer data
 - Instagram portfolio integration
+
+## Verify
+
+Requires Node.js 20 or newer and no third-party packages:
+
+```bash
+node scripts/verify-site.cjs
+```
 
 ## Deploy
 Static site — just deploy `index.html` to any hosting (Vercel, Netlify, GitHub Pages).
