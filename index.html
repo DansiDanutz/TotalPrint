@@ -63,11 +63,6 @@
       border: 1.5px solid var(--border-hover);
     }
     .btn-outline:hover { background: var(--glow); border-color: var(--gold); transform: translateY(-2px); }
-    .btn-whatsapp {
-      background: #25D366; color: #fff;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
-    }
-    .btn-whatsapp:hover { background: #20BD5A; transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37,211,102,0.4); }
     .btn-lg { padding: 1.25rem 3rem; font-size: 0.95rem; }
     .btn-sm { padding: 0.7rem 1.5rem; font-size: 0.75rem; }
 
@@ -365,6 +360,8 @@
     .faq-q {
       display: flex; justify-content: space-between; align-items: center;
       cursor: pointer; font-size: 1.05rem; font-weight: 600; transition: color 0.3s;
+      width: 100%; border: 0; background: transparent; color: inherit;
+      font-family: inherit; text-align: left;
     }
     .faq-q:hover { color: var(--gold); }
     .faq-q .icon { font-size: 1.5rem; color: var(--gold); transition: transform 0.3s; }
@@ -411,13 +408,13 @@
     .floating-cta {
       position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
       width: 60px; height: 60px; border-radius: 50%;
-      background: #25D366; color: #fff; font-size: 1.75rem;
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #fff; font-size: 1.75rem;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      box-shadow: 0 4px 20px rgba(131,58,180,0.4);
       transition: all 0.3s; text-decoration: none;
       animation: bounce-soft 3s infinite;
     }
-    .floating-cta:hover { transform: scale(1.15); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+    .floating-cta:hover { transform: scale(1.15); box-shadow: 0 8px 30px rgba(131,58,180,0.5); }
     @keyframes bounce-soft { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
     /* ═══ FOOTER ═══ */
@@ -470,15 +467,15 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/40740000000?text=Bună! Vreau să închiriez litere luminoase pentru evenimentul meu." target="_blank" class="floating-cta" aria-label="WhatsApp">💬</a>
+<!-- FLOATING INSTAGRAM -->
+<a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer" class="floating-cta" aria-label="Instagram Total Events Cluj">📷</a>
 
 <!-- NAV -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="#" class="nav-logo"><em>Total</em>Print</a>
+    <a href="#top" class="nav-logo"><em>Total</em>Print</a>
     <div class="nav-links" id="navLinks">
       <a href="#servicii">Servicii</a>
       <a href="#galerie">Galerie</a>
@@ -487,7 +484,7 @@
       <a href="#intrebari">FAQ</a>
       <a href="#contact" class="nav-cta">Solicită Ofertă</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
+    <button class="hamburger" id="hamburger" aria-label="Deschide meniul" aria-controls="navLinks" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -509,7 +506,7 @@
     </p>
     <div class="hero-buttons">
       <a href="#contact" class="btn btn-gold btn-lg">Solicită Ofertă Gratuită</a>
-      <a href="https://wa.me/40740000000?text=Bună! Vreau să închiriez litere luminoase." target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp Direct</a>
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">📷 Instagram Direct</a>
     </div>
     <div class="hero-trust">
       <div class="hero-trust-item"><div class="num" data-count="500">0</div><div class="label">Evenimente</div></div>
@@ -641,7 +638,7 @@
       </div>
     </div>
     <div class="text-center" style="margin-top: 2.5rem;">
-      <a href="https://www.instagram.com/total.events.cluj" target="_blank" class="btn btn-outline">📷 Vezi Toate Pozele pe Instagram</a>
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer" class="btn btn-outline">📷 Vezi Toate Pozele pe Instagram</a>
     </div>
   </div>
 </section>
@@ -784,45 +781,45 @@
     </div>
     <div class="reveal">
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Cât de mari sunt literele?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Literele noastre au o înălțime de aproximativ 120 cm (1.2 metri). Sunt vizibile de la distanță mare și perfecte atât pentru interior cât și exterior.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Cât timp înainte trebuie să rezerv?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Recomandăm rezervarea cu minimum 2 săptămâni înainte, mai ales pentru weekenduri. Pentru nunți, ideal este cu 1-2 luni în avans. Dar ne descurcăm și cu cereri de ultimă oră — contactează-ne!</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Livrați și în afara Clujului?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Da! Acoperim toată Transilvania — Cluj, Alba, Bistrița, Mureș, Sibiu, Sălaj, Maramureș și împrejurimi. Transportul în Cluj este inclus. Pentru distanțe mai mari se adaugă o taxa de transport.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Funcționează și în exterior?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Da, literele funcționează excelent atât interior cât și exterior. Sunt cele mai spectaculoase seara / noaptea. Pentru evenimente în aer liber avem grijă să protejăm echipamentul.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Ce se întâmplă dacă se strică un bec?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Fiecare literă este verificată cu atenție înainte de livrare. Folosim becuri LED de calitate superioară cu durată lungă de viață. În cazul improbabil al unei probleme, o rezolvăm pe loc sau înlocuim litera.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Ce litere și simboluri aveți disponibile?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Avem toate literele A-Z, cifrele 0-9, plus simboluri speciale: & (ampersand), ❤️ (inimă), # (hashtag), @ și altele. Pentru simboluri custom, contactează-ne cu minim 3 săptămâni înainte.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <button type="button" class="faq-q" aria-expanded="false">
           <span>Cum se face plata?</span><span class="icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Acceptăm plata cash la livrare, transfer bancar sau plată cu cardul. Pentru rezervare cerem un avans de 30% care se scade din totalul final.</div>
       </div>
     </div>
@@ -836,8 +833,8 @@
     <p class="section-desc center reveal" style="margin-bottom: 2.5rem;">Scrie-ne acum și primești oferta în maxim 2 ore. Locurile se ocupă rapid!</p>
     <div class="flex-center gap-3 reveal" style="flex-wrap: wrap;">
       <a href="#contact" class="btn btn-gold btn-lg">Solicită Ofertă Gratuită</a>
-      <a href="https://wa.me/40740000000" target="_blank" class="btn btn-whatsapp btn-lg">💬 WhatsApp</a>
-      <a href="tel:+40740000000" class="btn btn-outline btn-lg">📞 Sună Acum</a>
+      <a href="mailto:contact@totalprint.ro" class="btn btn-outline btn-lg">✉️ Trimite Email</a>
+      <a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">📷 Instagram</a>
     </div>
   </div>
 </section>
@@ -851,25 +848,25 @@
       <p class="section-desc center reveal">Completează formularul sau contactează-ne direct. Răspundem rapid!</p>
     </div>
     <div class="contact-grid">
-      <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Trimis!'; this.querySelector('button').disabled=true; setTimeout(() => { this.reset(); this.querySelector('button').textContent='Trimite Cererea →'; this.querySelector('button').disabled=false; }, 3000);">
+      <form class="reveal" id="contactForm" action="mailto:contact@totalprint.ro" method="post" enctype="text/plain">
         <div class="grid grid-2 gap-3">
           <div class="form-group">
-            <label>Numele Tău *</label>
-            <input type="text" class="form-input" placeholder="Maria Ionescu" required>
+            <label for="contactName">Numele Tău *</label>
+            <input id="contactName" name="name" type="text" class="form-input" placeholder="Maria Ionescu" autocomplete="name" required>
           </div>
           <div class="form-group">
-            <label>Telefon *</label>
-            <input type="tel" class="form-input" placeholder="0740 123 456" required>
+            <label for="contactPhone">Telefon *</label>
+            <input id="contactPhone" name="phone" type="tel" class="form-input" placeholder="0740 123 456" autocomplete="tel" required>
           </div>
         </div>
         <div class="form-group">
-          <label>Email</label>
-          <input type="email" class="form-input" placeholder="maria@email.com">
+          <label for="contactEmail">Email</label>
+          <input id="contactEmail" name="email" type="email" class="form-input" placeholder="maria@email.com" autocomplete="email">
         </div>
         <div class="grid grid-2 gap-3">
           <div class="form-group">
-            <label>Tip Eveniment *</label>
-            <select class="form-input" required>
+            <label for="eventType">Tip Eveniment *</label>
+            <select id="eventType" name="eventType" class="form-input" required>
               <option value="">Selectează...</option>
               <option>Nuntă</option>
               <option>Botez</option>
@@ -880,15 +877,16 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Data Evenimentului</label>
-            <input type="date" class="form-input">
+            <label for="eventDate">Data Evenimentului</label>
+            <input id="eventDate" name="eventDate" type="date" class="form-input">
           </div>
         </div>
         <div class="form-group">
-          <label>Ce Litere / Mesaj Dorești? *</label>
-          <textarea class="form-input" placeholder="ex: LOVE, MR & MRS, cifra 30, numele ANDREI..." required></textarea>
+          <label for="contactMessage">Ce Litere / Mesaj Dorești? *</label>
+          <textarea id="contactMessage" name="message" class="form-input" placeholder="ex: LOVE, MR & MRS, cifra 30, numele ANDREI..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Trimite Cererea →</button>
+        <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Pregătește Emailul →</button>
+        <p id="contactStatus" role="status" aria-live="polite" style="margin-top: 1rem; color: var(--text-dim); font-size: 0.9rem;"></p>
       </form>
 
       <div class="reveal">
@@ -897,13 +895,6 @@
           <div>
             <h4>Locație</h4>
             <p>Cluj-Napoca, România<br>Livrăm în toată Transilvania</p>
-          </div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-icon">📱</div>
-          <div>
-            <h4>Telefon & WhatsApp</h4>
-            <p><a href="tel:+40740000000">+40 740 000 000</a></p>
           </div>
         </div>
         <div class="contact-card">
@@ -917,14 +908,14 @@
           <div class="contact-icon">📷</div>
           <div>
             <h4>Instagram</h4>
-            <p><a href="https://www.instagram.com/total.events.cluj" target="_blank">@total.events.cluj</a></p>
+            <p><a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer">@total.events.cluj</a></p>
           </div>
         </div>
         <div class="contact-card">
           <div class="contact-icon">⏰</div>
           <div>
             <h4>Program</h4>
-            <p>Luni – Duminică: 09:00 – 21:00<br>Disponibili non-stop pe WhatsApp</p>
+            <p>Luni – Duminică: 09:00 – 21:00<br>Scrie-ne oricând pe email sau Instagram</p>
           </div>
         </div>
 
@@ -945,9 +936,8 @@
         <div class="nav-logo" style="font-size: 1.8rem;"><em>Total</em>Print</div>
         <p>Închiriere litere luminoase LED pentru evenimente speciale. Cluj-Napoca și toată Transilvania. Transport, montaj și ridicare incluse.</p>
         <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
-          <a href="https://www.instagram.com/total.events.cluj" target="_blank" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">📷</a>
-          <a href="https://wa.me/40740000000" target="_blank" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">💬</a>
-          <a href="tel:+40740000000" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">📞</a>
+          <a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer" aria-label="Instagram Total Events Cluj" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">📷</a>
+          <a href="mailto:contact@totalprint.ro" aria-label="Email TotalPrint" style="width:40px;height:40px;border-radius:0.5rem;background:var(--glow);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all 0.3s;">✉️</a>
         </div>
       </div>
       <div class="footer-col">
@@ -966,9 +956,8 @@
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <a href="tel:+40740000000">📱 +40 740 000 000</a>
         <a href="mailto:contact@totalprint.ro">📧 contact@totalprint.ro</a>
-        <a href="https://www.instagram.com/total.events.cluj" target="_blank">📷 @total.events.cluj</a>
+        <a href="https://www.instagram.com/total.events.cluj" target="_blank" rel="noopener noreferrer">📷 @total.events.cluj</a>
         <a href="#contact">📍 Cluj-Napoca</a>
       </div>
     </div>
@@ -978,6 +967,7 @@
   </div>
 </footer>
 
+<script src="contact.js"></script>
 <script>
 // Nav scroll
 const nav = document.getElementById('nav');
@@ -989,11 +979,26 @@ const navLinks = document.getElementById('navLinks');
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('open');
   navLinks.classList.toggle('open');
+  const isOpen = navLinks.classList.contains('open');
+  hamburger.setAttribute('aria-expanded', String(isOpen));
+  hamburger.setAttribute('aria-label', isOpen ? 'Închide meniul' : 'Deschide meniul');
 });
 document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
   hamburger.classList.remove('open');
   navLinks.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.setAttribute('aria-label', 'Deschide meniul');
 }));
+
+// FAQ disclosure controls
+document.querySelectorAll('.faq-q').forEach(button => button.addEventListener('click', () => {
+  const item = button.closest('.faq-item');
+  const isOpen = item.classList.toggle('open');
+  button.setAttribute('aria-expanded', String(isOpen));
+}));
+
+// Contact handoff
+TotalPrintContact.initializeContactForm(document, window.location);
 
 // Reveal on scroll
 const revealObserver = new IntersectionObserver((entries) => {
@@ -1035,9 +1040,12 @@ for (let i = 0; i < 25; i++) {
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    const selector = a.getAttribute('href');
+    if (!selector || selector === '#') return;
+    const target = document.querySelector(selector);
+    if (!target) return;
     e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 </script>
