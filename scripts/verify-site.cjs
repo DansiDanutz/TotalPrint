@@ -142,6 +142,24 @@ assert.match(
   /jq -s -e '\(\[\.\[\]\.runs\[\]\.results\[\]\?\] \| length\) == 0'/,
   'CodeQL must fail closed when SARIF contains any result',
 );
+const executableCodeqlRefs = [
+  ...codeqlWorkflow.matchAll(
+    /^\s*-\s+uses:\s+(actions\/checkout|github\/codeql-action\/[^@\s]+)@([^\s#]+)/gm,
+  ),
+];
+assert.ok(executableCodeqlRefs.length >= 3, 'expected checkout, CodeQL init, and CodeQL analyze steps');
+for (const [, action, revision] of executableCodeqlRefs) {
+  assert.match(
+    revision,
+    /^[0-9a-f]{40}$/,
+    `CodeQL executable action ${action} must use an immutable 40-character revision`,
+  );
+}
+assert.doesNotMatch(
+  codeqlWorkflow,
+  /^\s+(?:queries|config-file):/m,
+  'CodeQL query-suite and config-file overrides require explicit audited approval',
+);
 assert.doesNotMatch(
   codeqlWorkflow,
   /(?:actions\/checkout|github\/codeql-action\/(?:init|analyze))@v\d+\b/,
