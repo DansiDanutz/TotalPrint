@@ -29,5 +29,7 @@ jobs:
           output: ../results
           upload: never
           upload-database: false
-      - name: Require a clean CodeQL result set
-        run: jq -s -e '([.[].runs[].results[]?] | length) == 0' ../results/*.sarif
+      - name: Report and reject CodeQL findings
+        run: |
+          jq -r '.runs[].results[]? | [.ruleId, .locations[0].physicalLocation.artifactLocation.uri, (.locations[0].physicalLocation.region.startLine // 0), .message.text] | @tsv' ../results/*.sarif
+          jq -s -e '([.[].runs[].results[]?] | length) == 0' ../results/*.sarif
