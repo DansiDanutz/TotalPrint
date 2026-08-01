@@ -19,7 +19,7 @@ node scripts/verify-site.cjs
 ```
 
 ## Deploy
-Deploy the complete static site assets, including `index.html`, `contact.js`, and `vercel.json`, to the same hosting release (Vercel, Netlify, GitHub Pages, or equivalent). Do not publish `index.html` by itself because the contact and reveal interactions require `contact.js`.
+Deploy the complete static site assets, including `index.html`, `contact.js`, `site.js`, and `vercel.json`, to the same hosting release (Vercel, Netlify, GitHub Pages, or equivalent). Do not publish `index.html` by itself because the contact and reveal interactions require both JavaScript assets.
 
 ## Services
 - Nunți & Logodne (LOVE, MR & MRS)
