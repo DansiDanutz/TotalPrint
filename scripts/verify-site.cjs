@@ -169,7 +169,7 @@ function yamlScalar(rawValue) {
 
 function executableCodeqlRefs(workflow) {
   return workflow.split('\n').flatMap((line) => {
-    const uses = line.match(/^\s*-\s+(?:uses|"uses"|'uses')\s*:\s*(.+)$/u);
+    const uses = line.match(/^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*(.+)$/u);
     if (!uses) return [];
     const scalar = yamlScalar(uses[1]);
     const reference = scalar.match(
@@ -209,7 +209,7 @@ assert.throws(
   'quoted mutable CodeQL action references must fail validation',
 );
 const codeqlOverrideKeyPattern =
-  /^\s+(?:queries|config-file|"queries"|'queries'|"config-file"|'config-file')\s*:/mu;
+  /(?:^\s*|[,{}]\s*)(?:queries|config-file|"queries"|'queries'|"config-file"|'config-file')\s*:/mu;
 assert.doesNotMatch(
   codeqlWorkflow,
   codeqlOverrideKeyPattern,
@@ -219,6 +219,19 @@ assert.match(
   '      "queries": ./narrow.qls',
   codeqlOverrideKeyPattern,
   'quoted query override keys must remain covered by the rejection guard',
+);
+assert.throws(
+  () =>
+    assertImmutableCodeqlRefs(
+      '- name: Autobuild\n  uses: github/codeql-action/autobuild@v4',
+    ),
+  /immutable 40-character revision/u,
+  'named multi-line steps must not hide mutable CodeQL action references',
+);
+assert.match(
+  'with: { languages: javascript-typescript, queries: ./narrow.qls }',
+  codeqlOverrideKeyPattern,
+  'flow-mapping query override keys must remain covered by the rejection guard',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
