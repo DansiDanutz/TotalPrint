@@ -256,7 +256,7 @@ assert.match(
   codeqlOverrideKeyPattern,
   'flow-mapping query override keys must remain covered by the rejection guard',
 );
-const unsupportedCodeqlYamlPattern = /^\s*(?:-\s*\{|\?\s+)/mu;
+const unsupportedCodeqlYamlPattern = /^\s*(?:-\s*(?:\{|\?)|\?\s+)/mu;
 const unsupportedUsesContinuationPattern =
   /^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*(?:#.*)?$/mu;
 assert.doesNotMatch(
@@ -283,6 +283,11 @@ assert.match(
   '? queries\n: ./narrow.qls',
   unsupportedCodeqlYamlPattern,
   'explicit mapping keys must remain outside the audited workflow grammar',
+);
+assert.match(
+  '- ? uses\n  : docker://alpine:latest',
+  unsupportedCodeqlYamlPattern,
+  'sequence-item explicit keys must remain outside the audited workflow grammar',
 );
 assert.throws(
   () => assertImmutableCodeqlRefs('- uses: >-\n    vendor/report-action@main'),
