@@ -103,8 +103,14 @@ function extractInlineScripts(markup) {
     }
     const openingEnd = normalized.indexOf('>', openingStart + '<script'.length);
     assert.notEqual(openingEnd, -1, 'unterminated script opening tag');
-    const closingStart = normalized.indexOf('</script', openingEnd + 1);
-    assert.notEqual(closingStart, -1, 'missing script closing tag');
+    let closingStart = openingEnd + 1;
+    while (true) {
+      closingStart = normalized.indexOf('</script', closingStart);
+      assert.notEqual(closingStart, -1, 'missing script closing tag');
+      const closingBoundary = normalized[closingStart + '</script'.length];
+      if (closingBoundary === '>' || /\s/u.test(closingBoundary ?? '')) break;
+      closingStart += '</script'.length;
+    }
     const closingEnd = normalized.indexOf('>', closingStart + '</script'.length);
     assert.notEqual(closingEnd, -1, 'unterminated script closing tag');
     const source = markup.slice(openingEnd + 1, closingStart);
@@ -120,6 +126,20 @@ assert.deepEqual(
   ['const covered = true;'],
   'script discovery must cover browser-recovered casing and closing-tag forms',
 );
+for (const falseClosingName of ['scriptx', 'scripture']) {
+  const retainedSource = `const covered = true; // </${falseClosingName}>\nconst broken = ;`;
+  const retainedMarkup = `<script>${retainedSource}</script>`;
+  assert.deepEqual(
+    extractInlineScripts(retainedMarkup),
+    [retainedSource],
+    `script discovery must ignore </${falseClosingName}> false closing-tag prefixes`,
+  );
+  assert.throws(
+    () => new vm.Script(extractInlineScripts(retainedMarkup)[0]),
+    SyntaxError,
+    `syntax after </${falseClosingName}> must remain inside the validated script`,
+  );
+}
 inlineScripts.forEach((source) => new vm.Script(source));
 
 const siteHeaderRule = vercelConfig.headers.find((rule) => rule.source === '/(.*)');
