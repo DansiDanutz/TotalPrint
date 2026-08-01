@@ -22,13 +22,13 @@
     return mailto;
   }
 
-  function initializeContactForm(documentRef, locationRef) {
+  function initializeContactForm(documentRef, locationRef, formDataFactory = (form) => new FormData(form)) {
     const form = documentRef.getElementById('contactForm');
     if (!form) return;
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const details = Object.fromEntries(new FormData(form).entries());
+      const details = Object.fromEntries(formDataFactory(form));
       const status = documentRef.getElementById('contactStatus');
 
       try {
@@ -43,7 +43,7 @@
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { buildContactMailto };
+    module.exports = { buildContactMailto, initializeContactForm };
   } else {
     root.TotalPrintContact = { buildContactMailto, initializeContactForm };
   }
