@@ -89,149 +89,22 @@ assert.doesNotMatch(html, /href="#"/);
 assert.doesNotMatch(html, /this\.querySelector\('button'\)\.textContent='✓ Trimis!'/);
 assert.doesNotMatch(html, /40740000000|0740 000 000/, 'placeholder phone channel must not be published');
 
-function nextScriptOrComment(markup, normalized, cursor) {
-  let inTag = false;
-  let quote = null;
-  for (let index = cursor; index < markup.length; index += 1) {
-    const character = markup[index];
-    if (quote) {
-      if (character === quote) quote = null;
-      continue;
-    }
-    if (inTag) {
-      if (character === '"' || character === "'") {
-        quote = character;
-      } else if (character === '>') {
-        inTag = false;
-      }
-      continue;
-    }
-    if (normalized.startsWith('<!--', index)) {
-      return { type: 'comment', start: index };
-    }
-    if (normalized.startsWith('<script', index)) {
-      const boundary = normalized[index + '<script'.length];
-      if (boundary === '>' || boundary === '/' || /\s/u.test(boundary ?? '')) {
-        return { type: 'script', start: index };
-      }
-    }
-    if (character === '<' && /[A-Za-z!/?]/u.test(markup[index + 1] ?? '')) {
-      inTag = true;
-    }
-  }
-  return null;
-}
+const siteScript = fs.readFileSync(path.join(root, 'site.js'), 'utf8');
+const scriptMarkerCount = html.toLowerCase().split('<script').length - 1;
+assert.equal(
+  scriptMarkerCount,
+  2,
+  'index.html must contain only the two audited external script references',
+);
+assert.match(html, /<script src="contact\.js"><\/script>/);
+assert.match(html, /<script src="site\.js"><\/script>/);
+assert.ok(
+  html.indexOf('<script src="contact.js"></script>') <
+    html.indexOf('<script src="site.js"></script>'),
+  'contact.js must load before site.js consumes its global initializer',
+);
+new vm.Script(siteScript, { filename: 'site.js' });
 
-function tagEnd(markup, start, description) {
-  let quote = null;
-  for (let index = start; index < markup.length; index += 1) {
-    const character = markup[index];
-    if (quote) {
-      if (character === quote) quote = null;
-    } else if (character === '"' || character === "'") {
-      quote = character;
-    } else if (character === '>') {
-      return index;
-    }
-  }
-  assert.fail(`unterminated ${description}`);
-}
-
-function extractInlineScripts(markup) {
-  const normalized = markup.toLowerCase();
-  const sources = [];
-  let cursor = 0;
-  while (cursor < markup.length) {
-    const token = nextScriptOrComment(markup, normalized, cursor);
-    if (!token) break;
-    if (token.type === 'comment') {
-      const commentEnd = normalized.indexOf('-->', token.start + '<!--'.length);
-      assert.notEqual(commentEnd, -1, 'unterminated HTML comment');
-      cursor = commentEnd + '-->'.length;
-      continue;
-    }
-    const openingStart = token.start;
-    const openingEnd = tagEnd(
-      markup,
-      openingStart + '<script'.length,
-      'script opening tag',
-    );
-    let closingStart = openingEnd + 1;
-    while (true) {
-      closingStart = normalized.indexOf('</script', closingStart);
-      assert.notEqual(closingStart, -1, 'missing script closing tag');
-      const closingBoundary = normalized[closingStart + '</script'.length];
-      if (closingBoundary === '>' || /\s/u.test(closingBoundary ?? '')) break;
-      closingStart += '</script'.length;
-    }
-    const closingEnd = tagEnd(
-      markup,
-      closingStart + '</script'.length,
-      'script closing tag',
-    );
-    const source = markup.slice(openingEnd + 1, closingStart);
-    if (source) sources.push(source);
-    cursor = closingEnd + 1;
-  }
-  return sources;
-}
-
-const inlineScripts = extractInlineScripts(html);
-assert.deepEqual(
-  extractInlineScripts('<SCRIPT>const covered = true;</ScRiPt \\t\\n recovered>'),
-  ['const covered = true;'],
-  'script discovery must cover browser-recovered casing and closing-tag forms',
-);
-const solidusBoundaryMarkup = '<script/>const broken = ;</script>';
-assert.deepEqual(
-  extractInlineScripts(solidusBoundaryMarkup),
-  ['const broken = ;'],
-  'solidus must remain a valid browser-recovered script tag-name boundary',
-);
-assert.throws(
-  () => new vm.Script(extractInlineScripts(solidusBoundaryMarkup)[0]),
-  SyntaxError,
-  'invalid JavaScript inside a solidus-boundary script must fail validation',
-);
-for (const falseClosingName of ['scriptx', 'scripture']) {
-  const retainedSource = `const covered = true; // </${falseClosingName}>\nconst broken = ;`;
-  const retainedMarkup = `<script>${retainedSource}</script>`;
-  assert.deepEqual(
-    extractInlineScripts(retainedMarkup),
-    [retainedSource],
-    `script discovery must ignore </${falseClosingName}> false closing-tag prefixes`,
-  );
-  assert.throws(
-    () => new vm.Script(extractInlineScripts(retainedMarkup)[0]),
-    SyntaxError,
-    `syntax after </${falseClosingName}> must remain inside the validated script`,
-  );
-}
-const commentedScriptMarkup =
-  '<!-- <SCRIPT> // harmless --> <script>const broken = ;</script>';
-assert.deepEqual(
-  extractInlineScripts(commentedScriptMarkup),
-  ['const broken = ;'],
-  'script-like markup inside HTML comments must not absorb executable scripts',
-);
-assert.throws(
-  () => new vm.Script(extractInlineScripts(commentedScriptMarkup)[0]),
-  SyntaxError,
-  'invalid executable JavaScript after a commented script opener must fail validation',
-);
-const quotedCommentMarkerMarkup =
-  '<div title="<!--"><script>const broken = ;</script><span>--></span>';
-assert.deepEqual(
-  extractInlineScripts(quotedCommentMarkerMarkup),
-  ['const broken = ;'],
-  'comment markers inside quoted attributes must remain attribute data',
-);
-assert.throws(
-  () => new vm.Script(extractInlineScripts(quotedCommentMarkerMarkup)[0]),
-  SyntaxError,
-  'quoted comment markers must not hide a later executable script',
-);
-inlineScripts.forEach((source) => new vm.Script(source));
 
 const siteHeaderRule = vercelConfig.headers.find((rule) => rule.source === '/(.*)');
 assert.ok(siteHeaderRule, 'missing catch-all Vercel header rule');
@@ -353,4 +226,4 @@ assert.doesNotMatch(
   'CodeQL executable actions must not use mutable major-version tags',
 );
 
-console.log(`Site verification passed: contact delivery, interaction, security-header, and pinned-action contracts, and ${inlineScripts.length} inline script block are valid.`);
+console.log(`Site verification passed: contact delivery, interaction, security-header, and pinned-action contracts, and the external site script is valid.`);
