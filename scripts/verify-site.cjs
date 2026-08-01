@@ -95,6 +95,13 @@ function extractInlineScripts(markup) {
   let cursor = 0;
   while (cursor < markup.length) {
     const openingStart = normalized.indexOf('<script', cursor);
+    const commentStart = normalized.indexOf('<!--', cursor);
+    if (commentStart !== -1 && (openingStart === -1 || commentStart < openingStart)) {
+      const commentEnd = normalized.indexOf('-->', commentStart + '<!--'.length);
+      assert.notEqual(commentEnd, -1, 'unterminated HTML comment');
+      cursor = commentEnd + '-->'.length;
+      continue;
+    }
     if (openingStart === -1) break;
     const openingBoundary = normalized[openingStart + '<script'.length];
     if (openingBoundary !== '>' && !/\s/u.test(openingBoundary ?? '')) {
@@ -140,6 +147,18 @@ for (const falseClosingName of ['scriptx', 'scripture']) {
     `syntax after </${falseClosingName}> must remain inside the validated script`,
   );
 }
+const commentedScriptMarkup =
+  '<!-- <SCRIPT> // harmless --> <script>const broken = ;</script>';
+assert.deepEqual(
+  extractInlineScripts(commentedScriptMarkup),
+  ['const broken = ;'],
+  'script-like markup inside HTML comments must not absorb executable scripts',
+);
+assert.throws(
+  () => new vm.Script(extractInlineScripts(commentedScriptMarkup)[0]),
+  SyntaxError,
+  'invalid executable JavaScript after a commented script opener must fail validation',
+);
 inlineScripts.forEach((source) => new vm.Script(source));
 
 const siteHeaderRule = vercelConfig.headers.find((rule) => rule.source === '/(.*)');
