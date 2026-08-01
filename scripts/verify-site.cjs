@@ -96,9 +96,8 @@ assert.equal(
   2,
   'index.html must contain only the two audited external script references',
 );
-assert.doesNotMatch(
-  html,
-  /<!--|-->/u,
+assert.ok(
+  !html.includes('<!--') && !html.includes('-->'),
   'index.html must not contain comment delimiters that can deactivate audited scripts',
 );
 assert.match(html, /<script src="contact\.js"><\/script>/);
