@@ -233,6 +233,22 @@ assert.match(
   codeqlOverrideKeyPattern,
   'flow-mapping query override keys must remain covered by the rejection guard',
 );
+const unsupportedCodeqlYamlPattern = /^\s*(?:-\s*\{|\?\s+)/mu;
+assert.doesNotMatch(
+  codeqlWorkflow,
+  unsupportedCodeqlYamlPattern,
+  'CodeQL workflow must use audited block-style steps and implicit mapping keys',
+);
+assert.match(
+  '- { uses: github/codeql-action/autobuild@v4 }',
+  unsupportedCodeqlYamlPattern,
+  'flow-style steps must remain outside the audited workflow grammar',
+);
+assert.match(
+  '? queries\n: ./narrow.qls',
+  unsupportedCodeqlYamlPattern,
+  'explicit mapping keys must remain outside the audited workflow grammar',
+);
 assert.doesNotMatch(
   codeqlWorkflow,
   /(?:actions\/checkout|github\/codeql-action\/(?:init|analyze))@v\d+\b/,
