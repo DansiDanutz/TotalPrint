@@ -107,6 +107,11 @@ assert.ok(
     html.indexOf('<script src="site.js"></script>'),
   'contact.js must load before site.js consumes its global initializer',
 );
+assert.match(
+  html,
+  /<\/footer>\s*<script src="contact\.js"><\/script>\s*<script src="site\.js"><\/script>\s*<\/body>\s*<\/html>\s*$/u,
+  'the audited scripts must be active elements at the end of the document body',
+);
 new vm.Script(siteScript, { filename: 'site.js' });
 
 
@@ -157,6 +162,11 @@ assert.match(
   codeqlWorkflow,
   /jq -s -e '\(\[\.\[\]\.runs\[\]\.results\[\]\?\] \| length\) == 0'/,
   'CodeQL must fail closed when SARIF contains any result',
+);
+assert.match(
+  codeqlWorkflow,
+  /^        run: \|\n          jq -r '[^\n]+' \.\.\/results\/\*\.sarif\n          jq -s -e '\(\[\.\[\]\.runs\[\]\.results\[\]\?\] \| length\) == 0' \.\.\/results\/\*\.sarif$/mu,
+  'the active release step must report and reject SARIF findings with the audited commands',
 );
 function yamlScalar(rawValue) {
   const trimmed = rawValue.trim();
@@ -246,7 +256,7 @@ assert.match(
 );
 const unsupportedCodeqlYamlPattern = /^\s*(?:-\s*\{|\?\s+)/mu;
 const unsupportedUsesContinuationPattern =
-  /^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*$/mu;
+  /^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*(?:#.*)?$/mu;
 assert.doesNotMatch(
   codeqlWorkflow,
   unsupportedCodeqlYamlPattern,
@@ -291,6 +301,11 @@ assert.match(
   '- uses:\n    vendor/report-action@main',
   unsupportedUsesContinuationPattern,
   'continued plain action scalars must remain outside the audited workflow grammar',
+);
+assert.match(
+  '- uses: # approved helper\n    vendor/report-action@main',
+  unsupportedUsesContinuationPattern,
+  'comment-only uses values must not hide continued mutable action references',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
