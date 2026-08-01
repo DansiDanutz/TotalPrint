@@ -156,6 +156,11 @@ assert.match(
 );
 function yamlScalar(rawValue) {
   const trimmed = rawValue.trim();
+  assert.doesNotMatch(
+    trimmed,
+    /^[>|]/u,
+    'block-scalar action references are outside the audited workflow grammar',
+  );
   if (trimmed[0] === '"' || trimmed[0] === "'") {
     const quote = trimmed[0];
     const closingQuote = trimmed.indexOf(quote, 1);
@@ -172,9 +177,7 @@ function executableCodeqlRefs(workflow) {
     const uses = line.match(/^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*(.+)$/u);
     if (!uses) return [];
     const scalar = yamlScalar(uses[1]);
-    const reference = scalar.match(
-      /^(actions\/checkout|github\/codeql-action\/[^@\s]+)@([^\s]+)$/u,
-    );
+    const reference = scalar.match(/^([^@\s]+)@([^\s]+)$/u);
     return reference
       ? [{ action: reference[1], revision: reference[2] }]
       : [];
@@ -195,10 +198,14 @@ function assertImmutableCodeqlRefs(workflow, minimum = 0) {
 }
 
 const auditedCodeqlRefs = assertImmutableCodeqlRefs(codeqlWorkflow, 3);
-assert.equal(
-  auditedCodeqlRefs.length,
-  3,
-  'the audited workflow must retain exactly checkout, init, and analyze executable actions',
+assert.deepEqual(
+  auditedCodeqlRefs.map(({ action }) => action),
+  [
+    'actions/checkout',
+    'github/codeql-action/init',
+    'github/codeql-action/analyze',
+  ],
+  'the audited workflow must retain exactly the approved checkout, init, and analyze actions',
 );
 assert.throws(
   () =>
@@ -239,6 +246,11 @@ assert.doesNotMatch(
   unsupportedCodeqlYamlPattern,
   'CodeQL workflow must use audited block-style steps and implicit mapping keys',
 );
+assert.doesNotMatch(
+  codeqlWorkflow,
+  /\\/u,
+  'escape-bearing YAML is outside the audited CodeQL workflow grammar',
+);
 assert.match(
   '- { uses: github/codeql-action/autobuild@v4 }',
   unsupportedCodeqlYamlPattern,
@@ -248,6 +260,21 @@ assert.match(
   '? queries\n: ./narrow.qls',
   unsupportedCodeqlYamlPattern,
   'explicit mapping keys must remain outside the audited workflow grammar',
+);
+assert.throws(
+  () => assertImmutableCodeqlRefs('- uses: >-\n    vendor/report-action@main'),
+  /block-scalar action references/u,
+  'block-scalar action references must remain outside the audited workflow grammar',
+);
+assert.throws(
+  () => assertImmutableCodeqlRefs('- uses: vendor/report-action@main'),
+  /immutable 40-character revision/u,
+  'every third-party action reference must be inspected before allowlist validation',
+);
+assert.match(
+  '"quer\\u0069es": ./narrow.qls',
+  /\\/u,
+  'escaped quoted keys must remain outside the audited workflow grammar',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
