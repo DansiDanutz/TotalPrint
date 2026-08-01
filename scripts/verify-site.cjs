@@ -96,6 +96,11 @@ assert.equal(
   2,
   'index.html must contain only the two audited external script references',
 );
+assert.doesNotMatch(
+  html,
+  /<!--|-->/u,
+  'index.html must not contain comment delimiters that can deactivate audited scripts',
+);
 assert.match(html, /<script src="contact\.js"><\/script>/);
 assert.match(html, /<script src="site\.js"><\/script>/);
 assert.ok(
@@ -241,10 +246,17 @@ assert.match(
   'flow-mapping query override keys must remain covered by the rejection guard',
 );
 const unsupportedCodeqlYamlPattern = /^\s*(?:-\s*\{|\?\s+)/mu;
+const unsupportedUsesContinuationPattern =
+  /^\s*(?:-\s*)?(?:uses|"uses"|'uses')\s*:\s*$/mu;
 assert.doesNotMatch(
   codeqlWorkflow,
   unsupportedCodeqlYamlPattern,
   'CodeQL workflow must use audited block-style steps and implicit mapping keys',
+);
+assert.doesNotMatch(
+  codeqlWorkflow,
+  unsupportedUsesContinuationPattern,
+  'CodeQL action references must remain on the uses key line',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
@@ -275,6 +287,11 @@ assert.match(
   '"quer\\u0069es": ./narrow.qls',
   /\\/u,
   'escaped quoted keys must remain outside the audited workflow grammar',
+);
+assert.match(
+  '- uses:\n    vendor/report-action@main',
+  unsupportedUsesContinuationPattern,
+  'continued plain action scalars must remain outside the audited workflow grammar',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
