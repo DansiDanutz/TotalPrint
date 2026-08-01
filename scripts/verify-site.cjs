@@ -192,9 +192,11 @@ function executableCodeqlRefs(workflow) {
     if (!uses) return [];
     const scalar = yamlScalar(uses[1]);
     const reference = scalar.match(/^([^@\s]+)@([^\s]+)$/u);
-    return reference
-      ? [{ action: reference[1], revision: reference[2] }]
-      : [];
+    assert.ok(
+      reference,
+      `unsupported executable action reference: ${scalar}`,
+    );
+    return [{ action: reference[1], revision: reference[2] }];
   });
 }
 
@@ -291,6 +293,11 @@ assert.throws(
   () => assertImmutableCodeqlRefs('- uses: vendor/report-action@main'),
   /immutable 40-character revision/u,
   'every third-party action reference must be inspected before allowlist validation',
+);
+assert.throws(
+  () => assertImmutableCodeqlRefs('- uses: docker://alpine:latest'),
+  /unsupported executable action reference/u,
+  'container actions without an at-sign must fail instead of escaping action validation',
 );
 assert.match(
   '"quer\\u0069es": ./narrow.qls',
