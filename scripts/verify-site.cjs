@@ -310,9 +310,9 @@ function assertImmutableCodeqlRefs(workflow, minimum = 0) {
   return references;
 }
 
-const executableCodeqlRefs = assertImmutableCodeqlRefs(codeqlWorkflow, 3);
+const auditedCodeqlRefs = assertImmutableCodeqlRefs(codeqlWorkflow, 3);
 assert.equal(
-  executableCodeqlRefs.length,
+  auditedCodeqlRefs.length,
   3,
   'the audited workflow must retain exactly checkout, init, and analyze executable actions',
 );
