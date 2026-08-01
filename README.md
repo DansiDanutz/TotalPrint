@@ -19,7 +19,7 @@ node scripts/verify-site.cjs
 ```
 
 ## Deploy
-Static site — just deploy `index.html` to any hosting (Vercel, Netlify, GitHub Pages).
+Deploy the complete static site assets, including `index.html`, `contact.js`, and `vercel.json`, to the same hosting release (Vercel, Netlify, GitHub Pages, or equivalent). Do not publish `index.html` by itself because the contact and reveal interactions require `contact.js`.
 
 ## Services
 - Nunți & Logodne (LOVE, MR & MRS)

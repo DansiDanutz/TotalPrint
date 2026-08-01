@@ -1,5 +1,6 @@
 (function (root) {
   const contactAddress = 'contact@totalprint.ro';
+  const maxMailtoLength = 1800;
 
   function buildContactMailto(details) {
     const subject = `Solicitare ofertă TotalPrint — ${details.eventType}`;
@@ -14,25 +15,35 @@
       details.message,
     ].join('\n');
 
-    return `mailto:${contactAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${contactAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (mailto.length > maxMailtoLength) {
+      throw new RangeError('Contact mailto payload is too long');
+    }
+    return mailto;
   }
 
-  function initializeContactForm(documentRef, locationRef) {
+  function initializeContactForm(documentRef, locationRef, formDataFactory = (form) => new FormData(form)) {
     const form = documentRef.getElementById('contactForm');
     if (!form) return;
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const details = Object.fromEntries(new FormData(form).entries());
+      const details = Object.fromEntries(formDataFactory(form));
       const status = documentRef.getElementById('contactStatus');
 
-      status.textContent = 'Se deschide aplicația ta de email. Trimite mesajul pregătit pentru a finaliza cererea.';
-      locationRef.href = buildContactMailto(details);
+      try {
+        const mailto = buildContactMailto(details);
+        status.textContent = 'Se deschide aplicația ta de email. Trimite mesajul pregătit pentru a finaliza cererea.';
+        locationRef.href = mailto;
+      } catch (error) {
+        if (!(error instanceof RangeError)) throw error;
+        status.textContent = 'Mesajul este prea lung pentru aplicația de email. Scurtează detaliile și încearcă din nou.';
+      }
     });
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { buildContactMailto };
+    module.exports = { buildContactMailto, initializeContactForm };
   } else {
     root.TotalPrintContact = { buildContactMailto, initializeContactForm };
   }
