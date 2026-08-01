@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 const verifyWorkflow = fs.readFileSync(path.join(root, '.github/workflows/verify.yml'), 'utf8');
+const codeqlWorkflow = fs.readFileSync(path.join(root, '.github/workflows/codeql.yml'), 'utf8');
 const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
 const { buildContactMailto, initializeContactForm } = require(path.join(root, 'contact.js'));
 
@@ -117,6 +118,34 @@ assert.doesNotMatch(
   verifyWorkflow,
   /uses:\s+actions\/(?:checkout|setup-node)@v\d+\b/,
   'official actions must not use mutable major-version tags',
+);
+
+assert.match(
+  codeqlWorkflow,
+  /actions\/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1\b/,
+  'CodeQL checkout must be pinned to the verified commit',
+);
+assert.match(
+  codeqlWorkflow,
+  /github\/codeql-action\/init@c54b30b7df092240050e69945842bc67aee0f0f4\b/,
+  'CodeQL init must be pinned to the verified release',
+);
+assert.match(
+  codeqlWorkflow,
+  /github\/codeql-action\/analyze@c54b30b7df092240050e69945842bc67aee0f0f4\b/,
+  'CodeQL analyze must be pinned to the verified release',
+);
+assert.match(codeqlWorkflow, /languages:\s*javascript-typescript/);
+assert.match(codeqlWorkflow, /upload:\s*never/);
+assert.match(
+  codeqlWorkflow,
+  /jq -s -e '\(\[\.\[\]\.runs\[\]\.results\[\]\?\] \| length\) == 0'/,
+  'CodeQL must fail closed when SARIF contains any result',
+);
+assert.doesNotMatch(
+  codeqlWorkflow,
+  /(?:actions\/checkout|github\/codeql-action\/(?:init|analyze))@v\d+\b/,
+  'CodeQL executable actions must not use mutable major-version tags',
 );
 
 console.log(`Site verification passed: contact delivery, interaction, security-header, and pinned-action contracts, and ${inlineScripts.length} inline script block are valid.`);
