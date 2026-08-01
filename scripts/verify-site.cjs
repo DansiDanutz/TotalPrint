@@ -89,9 +89,37 @@ assert.doesNotMatch(html, /href="#"/);
 assert.doesNotMatch(html, /this\.querySelector\('button'\)\.textContent='✓ Trimis!'/);
 assert.doesNotMatch(html, /40740000000|0740 000 000/, 'placeholder phone channel must not be published');
 
-const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script\s*>/gi)]
-  .map((match) => match[1])
-  .filter(Boolean);
+function extractInlineScripts(markup) {
+  const normalized = markup.toLowerCase();
+  const sources = [];
+  let cursor = 0;
+  while (cursor < markup.length) {
+    const openingStart = normalized.indexOf('<script', cursor);
+    if (openingStart === -1) break;
+    const openingBoundary = normalized[openingStart + '<script'.length];
+    if (openingBoundary !== '>' && !/\s/u.test(openingBoundary ?? '')) {
+      cursor = openingStart + '<script'.length;
+      continue;
+    }
+    const openingEnd = normalized.indexOf('>', openingStart + '<script'.length);
+    assert.notEqual(openingEnd, -1, 'unterminated script opening tag');
+    const closingStart = normalized.indexOf('</script', openingEnd + 1);
+    assert.notEqual(closingStart, -1, 'missing script closing tag');
+    const closingEnd = normalized.indexOf('>', closingStart + '</script'.length);
+    assert.notEqual(closingEnd, -1, 'unterminated script closing tag');
+    const source = markup.slice(openingEnd + 1, closingStart);
+    if (source) sources.push(source);
+    cursor = closingEnd + 1;
+  }
+  return sources;
+}
+
+const inlineScripts = extractInlineScripts(html);
+assert.deepEqual(
+  extractInlineScripts('<SCRIPT>const covered = true;</ScRiPt \\t\\n recovered>'),
+  ['const covered = true;'],
+  'script discovery must cover browser-recovered casing and closing-tag forms',
+);
 inlineScripts.forEach((source) => new vm.Script(source));
 
 const siteHeaderRule = vercelConfig.headers.find((rule) => rule.source === '/(.*)');
