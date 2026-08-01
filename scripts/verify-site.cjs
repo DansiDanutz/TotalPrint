@@ -89,27 +89,73 @@ assert.doesNotMatch(html, /href="#"/);
 assert.doesNotMatch(html, /this\.querySelector\('button'\)\.textContent='✓ Trimis!'/);
 assert.doesNotMatch(html, /40740000000|0740 000 000/, 'placeholder phone channel must not be published');
 
+function nextScriptOrComment(markup, normalized, cursor) {
+  let inTag = false;
+  let quote = null;
+  for (let index = cursor; index < markup.length; index += 1) {
+    const character = markup[index];
+    if (quote) {
+      if (character === quote) quote = null;
+      continue;
+    }
+    if (inTag) {
+      if (character === '"' || character === "'") {
+        quote = character;
+      } else if (character === '>') {
+        inTag = false;
+      }
+      continue;
+    }
+    if (normalized.startsWith('<!--', index)) {
+      return { type: 'comment', start: index };
+    }
+    if (normalized.startsWith('<script', index)) {
+      const boundary = normalized[index + '<script'.length];
+      if (boundary === '>' || /\s/u.test(boundary ?? '')) {
+        return { type: 'script', start: index };
+      }
+    }
+    if (character === '<' && /[A-Za-z!/?]/u.test(markup[index + 1] ?? '')) {
+      inTag = true;
+    }
+  }
+  return null;
+}
+
+function tagEnd(markup, start, description) {
+  let quote = null;
+  for (let index = start; index < markup.length; index += 1) {
+    const character = markup[index];
+    if (quote) {
+      if (character === quote) quote = null;
+    } else if (character === '"' || character === "'") {
+      quote = character;
+    } else if (character === '>') {
+      return index;
+    }
+  }
+  assert.fail(`unterminated ${description}`);
+}
+
 function extractInlineScripts(markup) {
   const normalized = markup.toLowerCase();
   const sources = [];
   let cursor = 0;
   while (cursor < markup.length) {
-    const openingStart = normalized.indexOf('<script', cursor);
-    const commentStart = normalized.indexOf('<!--', cursor);
-    if (commentStart !== -1 && (openingStart === -1 || commentStart < openingStart)) {
-      const commentEnd = normalized.indexOf('-->', commentStart + '<!--'.length);
+    const token = nextScriptOrComment(markup, normalized, cursor);
+    if (!token) break;
+    if (token.type === 'comment') {
+      const commentEnd = normalized.indexOf('-->', token.start + '<!--'.length);
       assert.notEqual(commentEnd, -1, 'unterminated HTML comment');
       cursor = commentEnd + '-->'.length;
       continue;
     }
-    if (openingStart === -1) break;
-    const openingBoundary = normalized[openingStart + '<script'.length];
-    if (openingBoundary !== '>' && !/\s/u.test(openingBoundary ?? '')) {
-      cursor = openingStart + '<script'.length;
-      continue;
-    }
-    const openingEnd = normalized.indexOf('>', openingStart + '<script'.length);
-    assert.notEqual(openingEnd, -1, 'unterminated script opening tag');
+    const openingStart = token.start;
+    const openingEnd = tagEnd(
+      markup,
+      openingStart + '<script'.length,
+      'script opening tag',
+    );
     let closingStart = openingEnd + 1;
     while (true) {
       closingStart = normalized.indexOf('</script', closingStart);
@@ -118,8 +164,11 @@ function extractInlineScripts(markup) {
       if (closingBoundary === '>' || /\s/u.test(closingBoundary ?? '')) break;
       closingStart += '</script'.length;
     }
-    const closingEnd = normalized.indexOf('>', closingStart + '</script'.length);
-    assert.notEqual(closingEnd, -1, 'unterminated script closing tag');
+    const closingEnd = tagEnd(
+      markup,
+      closingStart + '</script'.length,
+      'script closing tag',
+    );
     const source = markup.slice(openingEnd + 1, closingStart);
     if (source) sources.push(source);
     cursor = closingEnd + 1;
@@ -158,6 +207,18 @@ assert.throws(
   () => new vm.Script(extractInlineScripts(commentedScriptMarkup)[0]),
   SyntaxError,
   'invalid executable JavaScript after a commented script opener must fail validation',
+);
+const quotedCommentMarkerMarkup =
+  '<div title="<!--"><script>const broken = ;</script><span>--></span>';
+assert.deepEqual(
+  extractInlineScripts(quotedCommentMarkerMarkup),
+  ['const broken = ;'],
+  'comment markers inside quoted attributes must remain attribute data',
+);
+assert.throws(
+  () => new vm.Script(extractInlineScripts(quotedCommentMarkerMarkup)[0]),
+  SyntaxError,
+  'quoted comment markers must not hide a later executable script',
 );
 inlineScripts.forEach((source) => new vm.Script(source));
 
@@ -209,23 +270,71 @@ assert.match(
   /jq -s -e '\(\[\.\[\]\.runs\[\]\.results\[\]\?\] \| length\) == 0'/,
   'CodeQL must fail closed when SARIF contains any result',
 );
-const executableCodeqlRefs = [
-  ...codeqlWorkflow.matchAll(
-    /^\s*-\s+uses:\s+(actions\/checkout|github\/codeql-action\/[^@\s]+)@([^\s#]+)/gm,
-  ),
-];
-assert.ok(executableCodeqlRefs.length >= 3, 'expected checkout, CodeQL init, and CodeQL analyze steps');
-for (const [, action, revision] of executableCodeqlRefs) {
-  assert.match(
-    revision,
-    /^[0-9a-f]{40}$/,
-    `CodeQL executable action ${action} must use an immutable 40-character revision`,
-  );
+function yamlScalar(rawValue) {
+  const trimmed = rawValue.trim();
+  if (trimmed[0] === '"' || trimmed[0] === "'") {
+    const quote = trimmed[0];
+    const closingQuote = trimmed.indexOf(quote, 1);
+    assert.notEqual(closingQuote, -1, 'unterminated quoted YAML scalar');
+    const trailing = trimmed.slice(closingQuote + 1).trim();
+    assert.ok(!trailing || trailing.startsWith('#'), 'unexpected YAML scalar suffix');
+    return trimmed.slice(1, closingQuote);
+  }
+  return trimmed.replace(/\s+#.*$/u, '').trim();
 }
+
+function executableCodeqlRefs(workflow) {
+  return workflow.split('\n').flatMap((line) => {
+    const uses = line.match(/^\s*-\s+(?:uses|"uses"|'uses')\s*:\s*(.+)$/u);
+    if (!uses) return [];
+    const scalar = yamlScalar(uses[1]);
+    const reference = scalar.match(
+      /^(actions\/checkout|github\/codeql-action\/[^@\s]+)@([^\s]+)$/u,
+    );
+    return reference
+      ? [{ action: reference[1], revision: reference[2] }]
+      : [];
+  });
+}
+
+function assertImmutableCodeqlRefs(workflow, minimum = 0) {
+  const references = executableCodeqlRefs(workflow);
+  assert.ok(references.length >= minimum, 'expected checkout, CodeQL init, and CodeQL analyze steps');
+  for (const { action, revision } of references) {
+    assert.match(
+      revision,
+      /^[0-9a-f]{40}$/,
+      `CodeQL executable action ${action} must use an immutable 40-character revision`,
+    );
+  }
+  return references;
+}
+
+const executableCodeqlRefs = assertImmutableCodeqlRefs(codeqlWorkflow, 3);
+assert.equal(
+  executableCodeqlRefs.length,
+  3,
+  'the audited workflow must retain exactly checkout, init, and analyze executable actions',
+);
+assert.throws(
+  () =>
+    assertImmutableCodeqlRefs(
+      '  - uses: "github/codeql-action/autobuild@v4"',
+    ),
+  /immutable 40-character revision/u,
+  'quoted mutable CodeQL action references must fail validation',
+);
+const codeqlOverrideKeyPattern =
+  /^\s+(?:queries|config-file|"queries"|'queries'|"config-file"|'config-file')\s*:/mu;
 assert.doesNotMatch(
   codeqlWorkflow,
-  /^\s+(?:queries|config-file):/m,
+  codeqlOverrideKeyPattern,
   'CodeQL query-suite and config-file overrides require explicit audited approval',
+);
+assert.match(
+  '      "queries": ./narrow.qls',
+  codeqlOverrideKeyPattern,
+  'quoted query override keys must remain covered by the rejection guard',
 );
 assert.doesNotMatch(
   codeqlWorkflow,
