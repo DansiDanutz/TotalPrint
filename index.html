@@ -852,16 +852,16 @@
         <div class="grid grid-2 gap-3">
           <div class="form-group">
             <label for="contactName">Numele Tău *</label>
-            <input id="contactName" name="name" type="text" class="form-input" placeholder="Maria Ionescu" autocomplete="name" required>
+            <input id="contactName" name="name" type="text" maxlength="100" class="form-input" placeholder="Maria Ionescu" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="contactPhone">Telefon *</label>
-            <input id="contactPhone" name="phone" type="tel" class="form-input" placeholder="0740 123 456" autocomplete="tel" required>
+            <input id="contactPhone" name="phone" type="tel" maxlength="32" class="form-input" placeholder="0740 123 456" autocomplete="tel" required>
           </div>
         </div>
         <div class="form-group">
           <label for="contactEmail">Email</label>
-          <input id="contactEmail" name="email" type="email" class="form-input" placeholder="maria@email.com" autocomplete="email">
+          <input id="contactEmail" name="email" type="email" maxlength="254" class="form-input" placeholder="maria@email.com" autocomplete="email">
         </div>
         <div class="grid grid-2 gap-3">
           <div class="form-group">
@@ -883,7 +883,7 @@
         </div>
         <div class="form-group">
           <label for="contactMessage">Ce Litere / Mesaj Dorești? *</label>
-          <textarea id="contactMessage" name="message" class="form-input" placeholder="ex: LOVE, MR & MRS, cifra 30, numele ANDREI..." required></textarea>
+          <textarea id="contactMessage" name="message" maxlength="500" class="form-input" placeholder="ex: LOVE, MR & MRS, cifra 30, numele ANDREI..." required></textarea>
         </div>
         <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Pregătește Emailul →</button>
         <p id="contactStatus" role="status" aria-live="polite" style="margin-top: 1rem; color: var(--text-dim); font-size: 0.9rem;"></p>
