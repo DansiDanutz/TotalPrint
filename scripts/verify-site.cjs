@@ -111,7 +111,7 @@ function nextScriptOrComment(markup, normalized, cursor) {
     }
     if (normalized.startsWith('<script', index)) {
       const boundary = normalized[index + '<script'.length];
-      if (boundary === '>' || /\s/u.test(boundary ?? '')) {
+      if (boundary === '>' || boundary === '/' || /\s/u.test(boundary ?? '')) {
         return { type: 'script', start: index };
       }
     }
@@ -181,6 +181,17 @@ assert.deepEqual(
   extractInlineScripts('<SCRIPT>const covered = true;</ScRiPt \\t\\n recovered>'),
   ['const covered = true;'],
   'script discovery must cover browser-recovered casing and closing-tag forms',
+);
+const solidusBoundaryMarkup = '<script/>const broken = ;</script>';
+assert.deepEqual(
+  extractInlineScripts(solidusBoundaryMarkup),
+  ['const broken = ;'],
+  'solidus must remain a valid browser-recovered script tag-name boundary',
+);
+assert.throws(
+  () => new vm.Script(extractInlineScripts(solidusBoundaryMarkup)[0]),
+  SyntaxError,
+  'invalid JavaScript inside a solidus-boundary script must fail validation',
 );
 for (const falseClosingName of ['scriptx', 'scripture']) {
   const retainedSource = `const covered = true; // </${falseClosingName}>\nconst broken = ;`;
