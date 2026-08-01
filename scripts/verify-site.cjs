@@ -89,7 +89,7 @@ assert.doesNotMatch(html, /href="#"/);
 assert.doesNotMatch(html, /this\.querySelector\('button'\)\.textContent='✓ Trimis!'/);
 assert.doesNotMatch(html, /40740000000|0740 000 000/, 'placeholder phone channel must not be published');
 
-const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
+const inlineScripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script\s*>/gi)]
   .map((match) => match[1])
   .filter(Boolean);
 inlineScripts.forEach((source) => new vm.Script(source));
