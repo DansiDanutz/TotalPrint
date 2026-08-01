@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const vercelConfig = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
 const verifyWorkflow = fs.readFileSync(path.join(root, '.github/workflows/verify.yml'), 'utf8');
+const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
 const { buildContactMailto } = require(path.join(root, 'contact.js'));
 
 const mailto = new URL(buildContactMailto({
@@ -24,9 +25,29 @@ assert.match(mailto.searchParams.get('subject'), /Nuntă/);
 assert.match(mailto.searchParams.get('body'), /Maria Ionescu/);
 assert.match(mailto.searchParams.get('body'), /0740 123 456/);
 assert.match(mailto.searchParams.get('body'), /LOVE & MRS/);
+assert.ok(mailto.href.length <= 1800, 'mailto URI must remain within the supported boundary');
+assert.throws(
+  () => buildContactMailto({
+    name: 'Maria',
+    phone: '0740 123 456',
+    email: 'maria@example.com',
+    eventType: 'Nuntă',
+    eventDate: '2026-09-12',
+    message: '😀'.repeat(500),
+  }),
+  /too long/i,
+  'oversized encoded mailto payloads must fail before navigation',
+);
 
 assert.match(html, /<form[^>]+id="contactForm"/);
 assert.doesNotMatch(html, /onsubmit=/);
+assert.match(readme, /deploy[^\n]*(?:complete|all)[^\n]*(?:static|site)[^\n]*assets/i);
+assert.match(readme, /contact\.js/);
+assert.doesNotMatch(readme, /just deploy `index\.html`/i);
+assert.match(html, /name="name"[^>]+maxlength="100"/);
+assert.match(html, /name="phone"[^>]+maxlength="32"/);
+assert.match(html, /name="email"[^>]+maxlength="254"/);
+assert.match(html, /name="message"[^>]+maxlength="500"/);
 for (const field of ['name', 'phone', 'email', 'eventType', 'eventDate', 'message']) {
   assert.match(html, new RegExp(`name="${field}"`), `missing named field: ${field}`);
 }
